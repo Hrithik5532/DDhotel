@@ -1,0 +1,301 @@
+{% extends "template.html" %}
+    <!--=================================
+ header -->
+ {% block body %}
+    <!--=================================
+ intro bg -->
+ <style>
+    .star {
+        font-size: 30px;
+        color: #cccccc;
+        cursor: pointer;
+    }
+
+    .star:hover,
+    .star.active {
+        color: #ffd700; /* Change this to your desired star color */
+    }
+    .align-center {
+        text-align: center;
+    }
+    .hash-list {
+        display: block;
+        padding: 0;
+        margin: 0 auto;
+    }
+    
+    @media (min-width: 768px){
+        .hash-list.cols-3 > li:nth-last-child(-n+3) {
+            border-bottom: none;
+        }
+    }
+    @media (min-width: 768px){
+        .hash-list.cols-3 > li {
+            width: 33.3333%;
+        }
+    }
+    .hash-list > li {
+        display: block;
+        float: left;
+        border-right: 1px solid rgba(0, 0, 0, 0.2);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    }
+    .pad-30, .pad-30-all > * {
+        padding: 30px;
+    }
+    img {
+        border: 0;
+    }
+    .mgb-20, .mgb-20-all > * {
+        margin-bottom: 20px;
+    }
+    .wpx-100, .wpx-100-after:after {
+        width: 100px;
+    }
+    .img-round, .img-rel-round {
+        border-radius: 50%;
+    }
+    .padb-30, .padb-30-all > * {
+        padding-bottom: 30px;
+    }
+    
+    .mgb-40, .mgb-40-all > * {
+        margin-bottom: 40px;
+    }
+    .align-center {
+        text-align: center;
+    }
+    [class*="line-b"] {
+        position: relative;
+        padding-bottom: 20px;
+        border-color: #E6AF2A;
+    }
+    .fg-text-d, .fg-hov-text-d:hover, .fg-active-text-d.active {
+        color: #222;
+    }
+    .font-cond-b {
+        font-weight: 700 !important;
+    }
+</style>
+    <div class="inner-intro parallax bg-overlay-black-70" style="background-image: url(../statics/images/bg/02.jpg);">
+        <div class="container">
+            <div class="row text-center intro-title">
+                <div class="col-md-12">
+                    <h1 class="text-orange">Review</h1>
+                    <p class="text-white">Your review matters!</p>
+                    <ul class="page-breadcrumb">
+                        <li><a href="{% url 'home' %}"><i class="fa fa-home"></i> Home</a> <i class="fa fa-angle-double-right"></i></li>
+                        <li><span>Review Us</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--=================================
+ intro bg -->
+
+    <!--=================================
+ Review -->
+<section class="mt-5">
+    <ul class="nav nav-tabs tabs-link white justify-content-center" id="myTab" role="tablist">
+
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="posts-tab" data-bs-toggle="tab" data-bs-target="#posts" type="button" role="tab" aria-controls="posts" aria-selected="true">All Reviwes</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="form-tab" data-bs-toggle="tab" data-bs-target="#form" type="button" role="tab" aria-controls="form" aria-selected="false">Review Form</button>
+        </li>
+        
+    
+      </ul>
+</section>
+
+<section>
+    <div class=" Review tab-pane active show mt-4" id="posts" role="tabpanel" aria-labelledby="lunch-tab">
+        <div class="mgb-40 padb-30 auto-invert line-b-4 align-center">
+            <h1 class="font-cond-b fg-text-d lts-md fs-300 fs-300-xs no-mg" contenteditable="false">Read Customer Reviews</h1>
+        </div>
+        <ul class="hash-list cols-3 cols-1-xs pad-30-all align-center text-sm">
+            <li>
+                {% for i in reviwes %}
+                
+                <img src="../media/{{i.file}}" class="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]">
+                <p class="fs-110 font-cond-l" contenteditable="false">"{{i.message}} "</p>
+                <h5 class="font-cond mgb-5 fg-text-d fs-130" contenteditable="false">{{i.name}}</h5>    <div class="rating-container" data-rating="{{ i.rating }}"></div>
+                <div class="rating-container" data-rating="{{ i.rating }}"></div>
+
+                {% endfor %}
+            </li>
+            
+            
+          </ul>
+    </div>
+
+    <div class="page-section-ptb Review tab-pane fade" id="form" role="tabpanel" aria-labelledby="lunch-tab">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-title text-center">
+                            <div class="title-separator">
+                                <i class="glyph-icon flaticon-food-27"></i>
+                            </div>
+                            <h2> <span class="text-orange">Make </span> Review</h2>
+                            <p>Love our service? Found something we can improve? We'd love to hear it all. Your opinion shapes our service.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row justify-content-center" id="reviewForm">
+                    <div class="col-lg-10">
+                        <form action="{% url 'review' %}" method= "POST" enctype= multipart/form-data>
+                            {% csrf_token %}
+                            <div class="contact-form">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <div class="form-field">
+                                            <i class="fa fa-pencil"></i>
+                                            <input class="web" type="text" placeholder="Full Name" name="name"  {% if request.user.is_authenticated %}
+                                                value='{{request.user.first_name}} {{request.user.last_name}}'
+                                            {% endif %}required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <div class="form-field">
+                                            <i class="fa fa-phone"></i>
+                                            <input class="web" type="text" placeholder="Phone Number" name="phone" {% if request.user.is_authenticated %}
+                                            value='{{request.user.phone}}'
+                                        {% endif %}required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <div class="form-field">
+                                            <i class="fa fa-envelope-o"></i>
+                                            <input class="web" type="text" placeholder="Your Email" name="email" {% if request.user.is_authenticated %}
+                                            value='{{request.user.email}}'
+                                        {% endif %}required>
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <div class="form-field" id="datepicker">
+                                            <div class="selected-box">
+                                                <label for=""><b> Select Food Item :</b></label>
+                                                <select name="item_id" placeholder="Select food item" >
+                                                    <option  checked> -- select --  </option>
+                                                    {% for item in items %}
+                                                        <option value="{{item.id}}">{{item.name}}</option>
+                                                    {% endfor %}    
+                                                    
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% if request.user.is_authenticated %}
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <div class="form-field" id="datepicker">
+                                            <div class="selected-box">
+                                                <label for=""><b> Select Order Id :</b></label>
+                                                <select name="order_id" placeholder="Select food item" >
+                                                    <option  checked> -- select --  </option>
+                                                    {% for order in orders %}
+                                                        <option value="{{order.id}}">#  {{order.id}}</option>
+                                                    {% endfor %}    
+                                                    
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% else %}
+                                    {% endif %}
+                                    
+                                    <div class="col-lg-2 col-md-4 col-sm-4">
+                                        <div class="form-field">
+                                            <label for="">Rating:</label>
+                                            <div class="selected-box" id="starRating">
+                                                <!-- Star icons will be added here dynamically -->
+                                            </div>
+                                            <input type="hidden" name="rating" id="ratingInput" value="0" required>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <div class="form-">
+                                            <label for="">Upload Image/Video:</label>
+                                                <!-- Star icons will be added here dynamically -->
+                                            <input type="file" name="file">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-field">
+                                            <i class="fa fa-pencil"></i>
+                                            <textarea class="input-message " placeholder="Comment*" rows="7" name="message" required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-submit mt-10 mb-30 text-center">
+                                            <button  type="submit"  class="button uppercase"> Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bottom-text row text-center"><span class="text-orange">Your feedback helps us serve you better! Share your thoughts on our food quality, delivery speed, and overall experience.</div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </div>
+</section>
+
+    <!--=================================
+ Review -->
+ 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const starRating = document.getElementById('starRating');
+        const ratingInput = document.getElementById('ratingInput');
+        const maxStars = 5;
+        let rating = 0;
+
+        // Create star icons
+        for (let i = 1; i <= maxStars; i++) {
+            const star = document.createElement('span');
+            star.className = 'star';
+            star.innerHTML = '&#9733;'; // Unicode character for a star
+            star.dataset.value = i; // Set the value attribute to the star's position
+            star.addEventListener('click', handleStarClick);
+            starRating.appendChild(star);
+        }
+
+        function handleStarClick(event) {
+            rating = event.target.dataset.value;
+
+            // Update star colors based on the selected rating
+            updateStarColors();
+
+            // Update the hidden input field's value
+            ratingInput.value = rating;
+
+            // You can use the 'rating' variable to send the user's rating to the server or perform other actions.
+            console.log('User rated:', rating);
+        }
+
+        function updateStarColors() {
+            const stars = document.querySelectorAll('.star');
+
+            stars.forEach(star => {
+                const value = star.dataset.value;
+                star.classList.toggle('active', value <= rating);
+            });
+        }
+    });
+</script>
+
+ {% endblock body %}

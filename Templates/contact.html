@@ -1,0 +1,126 @@
+{% extends "template.html" %}
+ <!--=================================
+ header -->
+
+ <!--=================================
+ intro bg -->
+ {% block body %}
+<div class="inner-intro parallax bg-overlay-black-70" style="background-image: url(../statics/images/bg/03.jpg);">
+   <div class="container">
+     <div class="row text-center intro-title">
+     <div class="col-md-12">
+      <h1 class="text-orange">Contact Us</h1>
+      <p class="text-white">We Know The Secret Of Your Success</p>
+      <ul class="page-breadcrumb">
+        <li><a href="{% url 'home' %}"><i class="fa fa-home"></i> Home</a> <i class="fa fa-angle-double-right"></i></li>
+        <li><span>Contact</span></li>
+     </ul>
+     </div>
+     </div>
+  </div>
+</div>
+
+<!--=================================
+ intro bg -->
+
+
+<!--=================================
+  contact -->
+
+<section class="contact white-bg page-section-ptb">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section-title text-center">
+        <div class="title-separator">
+           <i class="glyph-icon flaticon-food-27"></i>
+         </div>
+          <h2> <span class="text-orange">Contact </span> Us</h2>
+          <p>It would be great to hear from you! If you got any questions</p>
+        </div>
+      </div>
+     </div>
+     <div class="row">
+        <div class="col-lg-4 col-md-3 col-sm-6">
+         <div class="contact-box text-center">
+            <i class="fa fa-map-marker"></i>
+            <h5>Address</h5>
+            <p>16 Headingley Lane, Headingley, Leeds, LS62AS</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-3 col-sm-6">
+         <div class="contact-box text-center">
+            <i class="fa fa-phone"></i>
+            <h5>Phone</h5>
+            <p> 0113 5135972</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-3 col-sm-6">
+         <div class="contact-box text-center">
+            <i class="fa fa-envelope-o"></i>
+            <h5>Email</h5>
+            <p> info@bombay2goa.co.uk</p>
+          </div>
+        </div>
+        
+      </div>
+      <div class="row mt-30">
+        <div class="col-lg-12">
+        <div id="formmessage">Success/Error Message Goes Here</div>
+          <form action="{% url 'contact_us' %}" method="POST">
+          {% csrf_token %}
+           <div class="">
+              <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                  <div class="form-field">
+                  <i class="fa fa-user"></i>
+                  <input id="name" type="text" placeholder="Name*" class="form-control" name="name" required>
+              </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                  <div class="form-field">
+                  <i class="fa fa-phone"></i>
+                 <input type="text" placeholder="Phone*" class="form-control" name="phone"required>
+               </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                  <div class="form-field">
+                  <i class="fa fa-envelope-o"></i>
+               <input type="email" placeholder="Email*" class="form-control" name="email"required>
+              </div>
+             </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                  <div class="form-field">
+                 <i class="fa fa-pencil"></i>
+                  <textarea class="input-message form-control" placeholder="Comment*" rows="7" name="message"required></textarea>
+                </div>
+                </div>
+              </div>
+              <div class="form-submit mt-10 text-center">
+                   <button id="submit" name="Submit" type="submit" value="Send" class="button"> Send Message</button>
+                </div>
+              </div>
+            </form>
+        </div>
+      </div>
+    </div>
+ </section>
+
+ <!--=================================
+  contact -->
+
+ <!--=================================
+  contact-map -->
+
+<section class="contact-map">
+  <div class="container-fluid">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2355.5591042732303!2d-1.5646455232395637!3d53.81512867242893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487959531faa3db5%3A0xd8bde39e939bbbef!2s16%20Headingley%20Ln.%2C%20Headingley%2C%20Leeds%20LS6%202AS%2C%20UK!5e0!3m2!1sen!2sin!4v1700559135065!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>    </div>
+  </div>
+ </section>
+
+ <!--=================================
+  contact-map -->
+
+  {% endblock body %}

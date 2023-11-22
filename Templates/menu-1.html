@@ -1,0 +1,619 @@
+{% extends "template.html" %}
+
+{% block body %}
+<style>
+  @keyframes shake {
+      10%, 90% {
+          transform: translate3d(-1px, 0, 0);
+      }
+      20%, 80% {
+          transform: translate3d(2px, 0, 0);
+      }
+      30%, 50%, 70% {
+          transform: translate3d(-4px, 0, 0);
+      }
+      40%, 60% {
+          transform: translate3d(4px, 0, 0);
+      }
+  }
+
+  .view-cart-button {
+      z-index :1;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      animation: shake 1s infinite; /* Add the shake animation */
+  }
+
+  .view-cart-button:hover {
+      animation: none; /* Disable the animation on hover */
+  }
+
+  .view-cart-button i {
+      margin-right: 5px;
+  }
+  
+input[type=checkbox] { display:none; } /* to hide the checkbox itself */
+input[type=checkbox] + label:before {
+  font-family: FontAwesome;
+  display: inline-block;
+}
+input[type=checkbox] + label{
+  font-size:15px;
+  font-weight:bold;
+}
+input[type=checkbox] + label:before { content: "\f096"; } /* unchecked icon */
+input[type=checkbox] + label:before { letter-spacing: 15px; } /* space between checkbox and label */
+
+input[type=checkbox]:checked + label:before { content: "\f046"; } /* checked icon */
+input[type=checkbox]:checked + label:before { letter-spacing: 5px; } /* allow space for check mark */
+hr {
+  border: none;
+  border-top: 1px dotted white;
+  color: black;
+  height: 1px;
+  width: 100%;
+  margin: 20px 0;
+}
+</style>
+<div class="inner-intro parallax bg-overlay-black-70" style="background-image: url(../statics/images/bg/02.jpg);padding: 6rem !important;">
+<div class="container">
+    <div class=" text-center intro-title">
+     <div class="col-sm-12">
+      <h1 class="text-orange">Menu style</h1>
+      <p class="text-white">We Know The Secret Of Your Success</p>
+      <ul class="page-breadcrumb">
+        <li><a href="#"><i class="fa fa-home"></i> Home</a> <i class="fa fa-angle-double-right"></i></li>
+        <li><span>Menu  <i class="fa fa-angle-double-right"></i></span></li>
+        <li><span>Menu style 1</span></li>
+      </ul>
+     </div>
+    </div>
+  </div>
+</div>
+
+<!--=================================
+ our-menu -->
+
+    <section class="our-menu white-bg  page-section-pt">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="tabs clearfix">
+              <!-- Nav tabs -->
+              {% if filter_products %}
+              
+              {% else %}
+             
+              <ul class="nav nav-tabs tabs-link white justify-content-center" id="myTab" role="tablist">
+
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="breakfast-tab" data-bs-toggle="tab" data-bs-target="#breakfast" type="button" role="tab" aria-controls="breakfast" aria-selected="true"><i class="glyph-icon flaticon-hot-mug-doodle"></i>Breakfast</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="lunch-tab" data-bs-toggle="tab" data-bs-target="#lunch" type="button" role="tab" aria-controls="lunch" aria-selected="false"><i class="glyph-icon flaticon-food-36"></i>Lunch</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="dinner-tab" data-bs-toggle="tab" data-bs-target="#dinner" type="button" role="tab" aria-controls="dinner" aria-selected="false"><i class="glyph-icon flaticon-food-9"></i>Dinner</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="drinks-tab" data-bs-toggle="tab" data-bs-target="#drinks" type="button" role="tab" aria-controls="drinks" aria-selected="false"><i class="glyph-icon flaticon-foamy-beer-jar"></i>Drinks</button>
+                </li>
+            
+              </ul>
+              {% endif %}
+              <!-- Tab panes -->
+
+              <div class="d-flex mb-4">
+                <div class="col-md-3" >
+                  <aside class="container " >
+                    <!-- Filter Sidebar -->
+                    <div class="filter-sidebar">
+                      {% if filter_products %}
+
+                      <div class="d-flex" style="    justify-content: space-between;">
+                        <h4 > Clear All Filters</h4>
+                        <a href="{% url 'menu' %}" class="btn btn-danger"> Clear</a>
+                      </div>
+                      {% endif %}
+                        <h4>Filter</h4>
+
+                        <!-- Search bar for dynamic searching -->
+                        <form action="{% url 'menu' %}" method="GET">
+                          <input type="hidden" name="filter" value="on">
+                          <input type="text" id="searchInput" class="mb-1"style="border:1px solid" name="search" placeholder="Search for items...">
+                          <div class="container " >
+                            <input type="Checkbox" name="veg" id="veg"class="form-check-input">
+                            <label for="veg" style=" 
+                            color: green;"> <i class="fa-solid fa-leaf"style="padding-right:5px"></i>Only Veg</label>
+
+                          </div>
+                          <div class="container">
+                            <input type="Checkbox" name="noneveg" id="nonveg"class="form-check-input">
+                            <label for="nonveg" style="
+                            color: red;"> <i class="fa-solid  fa-egg"style="padding-right:5px"></i>Only Non-Veg</label>
+
+                          </div>
+                          <hr>
+                          <div class="container">
+                            <input type="Checkbox" name="bestSeller" id="seller"class="form-check-input">
+                            <label for="seller" > <i class="fa-solid fa-award" style="padding-right:5px;color:#cc550f"></i>Best Seller</label>
+
+                          </div>
+                          <div class="container">
+                            <input type="Checkbox"name="topRated" id="rated"class="form-check-input">
+                            <label for="rated" > <i class="fa-solid fa-star" style="color: #ebe40a;padding-right:5px;"></i>Top Rated</label>
+
+                          </div>
+                       
+                          
+                          <button class="btn btn-success">
+                            Apply
+                          </button>
+                        </form>
+
+                        <!-- Checkbox for vegetarian items -->
+                    </div>
+                </aside>
+                  
+                  </div>
+
+                    {% if filter_products %}
+                    <div class="col-md-9">
+
+                      <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="breakfast" role="tabpanel" aria-labelledby="breakfast-tab">
+                          
+        
+                              <div class="row">
+                                {% for item in filter_products %}
+                                    <div class="col-lg-6 col-md-6">
+                            
+                                    
+                                      <div class="menu-body menu-white menu-left">
+                                        <div class="menu-thumbnail">
+                                          <img class="img-fluid center-block" src="../media/{{item.img}}" alt="">
+                                        </div>
+                                        <div class="menu-details" style="display:block !important;">
+                                          <div class="menu-title clearfix">
+                                            <h4>{{item.name}}</h4>
+                                            {% if item.id in cart_item_list %}
+                                            <button class="price " title="Remove From cart" style="margin-left: 2rem;" onclick="removeFromCart({{item.id}})">-</button>
+                                            {% else %}
+                                            <button class="price " title="Add to cart" style="margin-left: 2rem;" onclick="addToCart({{item.id}})">+</button>
+                                            <div class="qty-counter price" style="margin-left: 2rem;">
+        
+                                              <button class="quantity-adjust " onclick="adjustQuantity('{{item.id}}', -1)">-</button>
+                                              <span id="quantity{{item.id}}" class="quantity">0</span>
+                                              <button class="quantity-adjust " onclick="adjustQuantity('{{item.id}}', 1)">+</button>
+                                              
+                                            </div>
+                                            <div class="menu-description">
+                                              <p>{{item.description}}</p>
+                                            </div>
+                                            {% endif %}
+                                            <span class="price ">₹.{{item.price}}</span>
+                                          </div>
+                                          
+                                        </div>
+                                      </div>
+        
+                                    </div>
+                                  {% endfor %}
+                            
+                              </div>
+                          
+        
+                        </div>
+                      </div>
+                    </div>
+                    {% else %}
+                    <div class="col-md-9">
+
+                      <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="breakfast" role="tabpanel" aria-labelledby="breakfast-tab">
+                          
+        
+                              <div class="row">
+                                {% for item in breakfast %}
+                                    <div class="col-lg-6 col-md-6">
+                            
+                                    
+                                      <div class="menu-body menu-white menu-left">
+                                        <div class="menu-thumbnail">
+                                          <img class="img-fluid center-block" src="../media/{{item.img}}" alt="">
+                                        </div>
+                                        <div class="menu-details" style="display:block !important;">
+                                          <div class="menu-title clearfix">
+                                            <h4>{{item.name}}</h4>
+                                            {% if item.id in cart_item_list %}
+                                            <button class="price " title="Remove From cart" style="margin-left: 2rem;" onclick="removeFromCart({{item.id}})">-</button>
+                                            {% else %}
+                                            <button class="price " title="Add to cart" style="margin-left: 2rem;" onclick="addToCart({{item.id}})">+</button>
+                                            <div class="qty-counter price" style="margin-left: 2rem;">
+        
+                                              <button class="quantity-adjust " onclick="adjustQuantity('{{item.id}}', -1)">-</button>
+                                              <span id="quantity{{item.id}}" class="quantity">0</span>
+                                              <button class="quantity-adjust " onclick="adjustQuantity('{{item.id}}', 1)">+</button>
+                                              
+                                            </div>
+                                            <div class="menu-description">
+                                              <p>{{item.description}}</p>
+                                            </div>
+                                            {% endif %}
+                                            <span class="price ">₹.{{item.price}}</span>
+                                          </div>
+                                          
+                                        </div>
+                                      </div>
+        
+                                    </div>
+                                  {% endfor %}
+                            
+                              </div>
+                          
+        
+                        </div>
+                        <div class="tab-pane fade" id="lunch" role="tabpanel" aria-labelledby="lunch-tab">
+                          <div class="row">
+                              {% for item in lunch %}
+                                <div class="col-lg-6 col-md-6">
+                        
+                                
+                                  <div class="menu-body menu-white menu-left">
+                                    <div class="menu-thumbnail">
+                                      <img class="img-fluid center-block" src="../media/{{item.img}}" alt="">
+                                    </div>
+                                    <div class="menu-details" style="display:block !important;">
+                                      <div class="menu-title clearfix">
+                                        <h4>{{item.name}}</h4>
+                                        {% if item.id in cart_item_list %}
+                                        <button class="price " title="Remove From cart" style="margin-left: 2rem;" onclick="removeFromCart({{item.id}})">-</button>
+                                        {% else %}
+                                        <button class="price " title="Add to cart" style="margin-left: 2rem;" onclick="addToCart({{item.id}})">+</button>
+                                        <div class="qty-counter price" style="margin-left: 2rem;">
+        
+                                          <button class="quantity-adjust " onclick="adjustQuantity('{{item.id}}', -1)">-</button>
+                                          <span id="quantity{{item.id}}" class="quantity">0</span>
+                                          <button class="quantity-adjust " onclick="adjustQuantity('{{item.id}}', 1)">+</button>
+                                          
+                                        </div>
+                                        <div class="menu-description">
+                                          <p>{{item.description}}</p>
+                                        </div>
+                                        {% endif %}
+                                        <span class="price ">₹.{{item.price}}</span>
+                                      </div>
+                                      
+                                    </div>
+                                  </div>
+        
+                                </div>
+                              {% endfor %}
+                          </div>
+                        </div>
+                        <div class="tab-pane fade" id="dinner" role="tabpanel" aria-labelledby="dinner-tab">
+                          <div class="row">
+                            {% for item in dinner %}
+                              <div class="col-lg-6 col-md-6">
+                      
+                              
+                                <div class="menu-body menu-white menu-left">
+                                  <div class="menu-thumbnail">
+                                    <img class="img-fluid center-block" src="../media/{{item.img}}" alt="">
+                                  </div>
+                                  <div class="menu-details" style="display:block !important;">
+                                    <div class="menu-title clearfix">
+                                      <h4>{{item.name}}</h4>
+                                      {% if item.id in cart_item_list %}
+                                      <button class="price " title="Remove From cart" style="margin-left: 2rem;" onclick="removeFromCart({{item.id}})">-</button>
+                                      {% else %}
+                                      <button class="price " title="Add to cart" style="margin-left: 2rem;" onclick="addToCart({{item.id}})">+</button>
+                                      <div class="qty-counter price" style="margin-left: 2rem;">
+        
+                                        <button class="quantity-adjust " onclick="adjustQuantity('{{item.id}}', -1)">-</button>
+                                        <span id="quantity{{item.id}}" class="quantity">0</span>
+                                        <button class="quantity-adjust " onclick="adjustQuantity('{{item.id}}', 1)">+</button>
+                                        
+                                      </div>
+                                      <div class="menu-description">
+                                        <p>{{item.description}}</p>
+                                      </div>
+                                      {% endif %}
+                                      <span class="price ">₹.{{item.price}}</span>
+                                    </div>
+                                    
+                                  </div>
+                                </div>
+        
+                              </div>
+                            {% endfor %}
+                          </div>
+                        </div>
+                        <div class="tab-pane fade" id="drinks" role="tabpanel" aria-labelledby="drinks-tab">
+                          <div class="row">
+                            {% for item in drinks %}
+                              <div class="col-lg-6 col-md-6">
+                      
+                              
+                                <div class="menu-body menu-white menu-left">
+                                  <div class="menu-thumbnail">
+                                    <img class="img-fluid center-block" src="../media/{{item.img}}" alt="">
+                                  </div>
+                                  <div class="menu-details" style="display:block !important;">
+                                    <div class="menu-title clearfix">
+                                      <h4>{{item.name}}</h4>
+                                      {% if item.id in cart_item_list %}
+                                      <button class="price " title="Remove From cart" style="margin-left: 2rem;" onclick="removeFromCart({{item.id}})">-</button>
+                                      {% else %}
+                                      <button class="price " title="Add to cart" style="margin-left: 2rem;" onclick="addToCart({{item.id}})">+</button>
+                                      <div class="qty-counter price" style="margin-left: 2rem;">
+        
+                                        <button class="quantity-adjust " onclick="adjustQuantity('{{item.id}}', -1)">-</button>
+                                        <span id="quantity{{item.id}}" class="quantity">0</span>
+                                        <button class="quantity-adjust " onclick="adjustQuantity('{{item.id}}', 1)">+</button>
+                                        
+                                      </div>
+                                      <div class="menu-description">
+                                        <p>{{item.description}}</p>
+                                      </div>
+                                      {% endif %}
+                                      <span class="price ">₹.{{item.price}}</span>
+                                    </div>
+                                    
+                                  </div>
+                                </div>
+        
+                              </div>
+                            {% endfor %}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--=================================
+    special-menu -->
+    {% if filter_products %}
+    
+    {% else %}
+    <!--=================================
+    menu-list-bg -->
+      {% for subcat in subcategory %}
+
+      <section class="menu-list-bg bg-overlay-black-80" style="background-image: url(../statics/images/bg/04.jpg);">
+        <div class="container">
+          <div class="row content-text">
+            <div class="col-md-12 text-center">
+            <h2>{{subcat.name}}</h2>
+          </div>
+          </div>
+        </div>
+      </section>
+
+      <!--=================================
+      menu-list-bg -->
+
+      <!--=================================
+        our-menu -->
+        <section class="our-menu page-section-pt">
+          <div class="container">
+            <div class="row">
+                {% for item in products %}
+                  {% if item.subcategory.name == subcat.name %}
+                  <div class="col-lg-6 col-md-6">
+                  
+                          
+                    <div class="menu-body menu-white menu-left">
+                      <div class="menu-thumbnail">
+                        <img class="img-fluid center-block" src="../media/{{item.img}}" alt="">
+                      </div>
+                      <div class="menu-details" style="display:block !important;">
+                        <div class="menu-title clearfix">
+                          <h4>{{item.name}}</h4>
+                          {% if item.id in cart_item_list %}
+                          <button class="price " title="Remove From cart" style="margin-left: 2rem;" onclick="removeFromCart({{item.id}})">-</button>
+                          {% else %}
+                          <button class="price " title="Add to cart" style="margin-left: 2rem;" onclick="addToCart({{item.id}})">+</button>
+                          <div class="qty-counter price" style="margin-left: 2rem;">
+
+                            <button class="quantity-adjust " onclick="adjustQuantity('{{item.id}}', -1)">-</button>
+                                          <span id="quantity{{item.id}}" class="quantity">0</span>
+                            <button class="quantity-adjust " onclick="adjustQuantity('{{item.id}}', 1)">+</button>
+                                          
+                          </div>
+                          <div class="menu-description">
+                            <p>{{item.description}}</p>
+                          </div>
+                          {% endif %}
+                          <span class="price ">₹.{{item.price}}</span>
+                        </div>
+                        
+                      </div>
+                    </div>
+
+                  </div>
+                
+                  {% endif %}
+                  
+                {% endfor %}
+                  
+          </div>
+        </section>
+
+      {% endfor %}
+    {% endif %}
+
+    <!--=================================
+    our-menu -->
+
+
+{% if cart_item_list %}
+    <button class="view-cart-button btn-success"  onclick="window.location.href = '{% url "my-cart" %}'">
+        <i class="fa fa-shopping-cart"></i> View Cart ({{ cart_item_list|length }})
+    </button>
+
+{% endif %}
+<div class="modal" id="loginRequiredModal" tabindex="-1" role="dialog" aria-labelledby="loginRequiredModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginRequiredModalLabel">Login Required</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>To add item to the cart, login is required!</p>
+                <p>If you don't have an account: <a href="{% url 'register' %}" >Register</a></p>
+            </div>
+            <div class="modal-footer">
+                <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+        </div>
+    </div>
+</div>
+<script>
+  function adjustQuantity(itemId, delta) {
+      var quantityElement = document.getElementById('quantity' + itemId);
+      var currentQuantity = parseInt(quantityElement.innerText);
+      var newQuantity = Math.min(Math.max(currentQuantity + delta, 0), 10); // Adjust quantity between 0 and 10
+      quantityElement.innerText = newQuantity;
+  }
+
+  function addToCart(itemId, itemPrice) {
+      var quantity = parseInt(document.getElementById('quantity' + itemId).innerText);
+      var totalPrice = quantity * parseFloat(itemPrice);
+      
+      // You can send the quantity and total price to your addToCart function
+      console.log(`Adding ${quantity} item(s) with total price ₹.${totalPrice} to the cart for item ${itemId}`);
+  }
+</script>
+<script>
+  function addToCart(itemId) {
+    event.preventDefault(); // Prevent the default form submission behavior
+  
+    const qty = document.getElementById('quantity' + itemId).innerText;
+    const apiUrl = `http://127.0.0.1:8000/add-cart?itemId=${itemId}&qty=${qty}`;
+  
+    fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => {
+        if (!response.ok) {
+          if (response.status === 401) {
+            // Show the login required modal
+            $('#loginRequiredModal').modal('show');
+          }
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Log the message from the server
+        console.log(data.message);
+  
+        // Show a SweetAlert2 success message
+        Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text: data.message,
+          showConfirmButton: false,
+          timer: 5000, // Automatically close after 5 seconds
+        });
+        setTimeout(() => {
+          location.reload();
+      }, 1000);
+      })
+      .catch(error => {
+        // Log the error
+        console.error('There was a problem with the fetch operation:', error);
+  
+        // Show a SweetAlert2 error message
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Error adding item to cart',
+          showConfirmButton: false,
+          timer: 5000, // Automatically close after 5 seconds
+        });
+        
+      });
+  }
+  
+  
+  function removeFromCart(itemId) {
+    event.preventDefault(); // Prevent the default form submission behavior
+  
+    const apiUrl = `http://127.0.0.1:8000/remove-from-cart?itemId=${itemId}`;
+  
+    fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => {
+        if (!response.ok) {
+          if (response.status === 401) {
+            // Show the login required modal
+            $('#loginRequiredModal').modal('show');
+          }
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Log the message from the server
+        console.log(data.message);
+  
+        // Show a SweetAlert2 success message
+        Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text: data.message,
+          showConfirmButton: false,
+          timer: 5000, // Automatically close after 5 seconds
+        });
+        setTimeout(() => {
+          location.reload();
+      }, 1000);
+      })
+      .catch(error => {
+        // Log the error
+        console.error('There was a problem with the fetch operation:', error);
+  
+        // Show a SweetAlert2 error message
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Error removing item from cart',
+          showConfirmButton: false,
+          timer: 5000, // Automatically close after 5 seconds
+        });
+        setTimeout(() => {
+          location.reload();
+      }, 1000);
+      });
+  }
+  
+</script>
+
+
+{% endblock body %}

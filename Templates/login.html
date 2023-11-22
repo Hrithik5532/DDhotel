@@ -1,0 +1,216 @@
+
+{% extends "template.html" %}
+
+{% load socialaccount %}
+{% block body %}
+<!-- Section: Design Block -->
+<style>
+    .error-message {
+        color: red;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+</style>
+<section class="">
+    <!-- Jumbotron -->
+
+    {% if register %}
+        <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
+        <div class="container">
+            <div class="row gx-lg-5 align-items-center">
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <h1 class="my-5 display-3 fw-bold ls-tight">
+                Register Now <br />
+                <span class="text-primary">To get Best Offer on food</span>
+                </h1>
+                <p style="color: hsl(217, 10%, 50.8%)">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Eveniet, itaque accusantium odio, soluta, corrupti aliquam
+                quibusdam tempora at cupiditate quis eum maiores libero
+                veritatis? Dicta facilis sint aliquid ipsum atque?
+                </p>
+            </div>
+    
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <div class="card">
+                <div class="card-body py-5 px-md-5">
+                    <form action="{% url 'register' %}" method="POST">
+                        {% csrf_token %}
+                    <!-- 2 column grid layout with text inputs for the first and last names -->
+                    <div class="text-center">
+                        <p>Already have Account: <a href="{% url 'login' %}">Login now</a></p>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="form-outline">
+                                <input type="text" id="form3Example1" name="first_name" class="form-control" />
+                                <label class="form-label" for="form3Example1">First Name</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="form-outline">
+                                <input type="text" id="form3Example2" name="last_name" class="form-control" />
+                                <label class="form-label" for="form3Example2">Last Name</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-outline mb-4">
+                        <input type="number" min="0" maxlength="10" id="form3Example3" name="mobile" class="form-control" />
+                        <label class="form-label" for="form3Example3">Mobile No.</label>
+                    </div>
+
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <input type="email" id="form3Example3" name="email" class="form-control" />
+                        <label class="form-label" for="form3Example3">Email address</label>
+                    </div>
+    
+                    <!-- Password input -->
+                    <div class="form-outline mb-4">
+                        <input type="password" id="pass1" name="pass1" class="form-control" oninput="checkPasswordMatch()" />
+                        <label class="form-label" for="pass1">Password</label>
+                        <div id="pass1Error" class="error-message"></div>
+
+                    </div>
+                
+                    <div class="form-outline mb-4">
+                        <input type="password" id="pass2" name="pass2" class="form-control" oninput="checkPasswordMatch()" />
+                        <label class="form-label" for="pass2">Confirm Password</label>
+                        <div id="pass2Error" class="error-message"></div>
+
+                    </div>
+    
+                    <!-- Checkbox -->
+                    <div class="form-check d-flex justify-content-center mb-4">
+                        <input class="form-check-input me-2" type="checkbox" name="check"  id="form2Example33" checked />
+                        <label class="form-check-label" for="form2Example33">
+                        Subscribe to our newsletter
+                        </label>
+                    </div>
+    
+                    <!-- Submit button -->
+                    <button type="submit" id="submitBtn" class="btn btn-primary btn-block mb-4" disabled>
+                        Sign up
+                    </button>
+    
+                    <!-- Register buttons -->
+                    <div class="text-center">
+                        <p>or sign up with:</p>
+                        <button class="btn btn-lg btn-block btn-primary" style="background-color: #dd4b39;"
+                            type="submit"><i class="fab fa-google me-2"></i> Sign in with google</button>
+                    </div>
+                    </form>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    
+    {% elif login %}
+    <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
+        <div class="container">
+          <div class="row gx-lg-5 align-items-center">
+            <div class="col-lg-6 mb-5 mb-lg-0">
+              <h1 class="my-5 display-3 fw-bold ls-tight">
+                Login  <br />
+                <span class="text-primary">And Order Now</span>
+              </h1>
+              <p style="color: hsl(217, 10%, 50.8%)">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Eveniet, itaque accusantium odio, soluta, corrupti aliquam
+                quibusdam tempora at cupiditate quis eum maiores libero
+                veritatis? Dicta facilis sint aliquid ipsum atque?
+              </p>
+            </div>
+    
+            <div class="col-lg-6 mb-5 mb-lg-0">
+              <div class="card">
+                <div class="card-body py-5 px-md-5">
+                  <form method="POST" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <!-- 2 column grid layout with text inputs for the first and last names -->
+                    <div class="text-center">
+                        <p>Don't have Account: <a href="{% url 'register' %}">Register now</a></p>
+                        
+                    </div>
+    
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                      <input type="email" id="form3Example3" name="email"class="form-control" />
+                      <label class="form-label" for="form3Example3">Email address</label>
+                    </div>
+    
+                    <!-- Password input -->
+                    <div class="form-outline mb-4">
+                      <input type="password" id="form3Example4" name="pass" class="form-control" />
+                      <label class="form-label" for="form3Example4">Password</label>
+                    </div>
+    
+                    
+    
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary btn-block mb-4">
+                      Login
+                    </button>
+    
+                    <!-- Register buttons -->
+                    <div class="text-center">
+                      <p>or Login with:</p>
+                      <a class="btn btn-lg btn-block btn-primary" href="{% provider_login_url 'google' %}" style="background-color: #dd4b39;"
+                          type="submit"><i class="fab fa-google me-2"></i> Sign in with google</a>
+                    </div>
+
+                    
+
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+    <!-- Jumbotron -->
+  </section>
+  <!-- Section: Design Block -->
+
+  
+  <script>
+    function checkPasswordMatch() {
+        var pass1 = document.getElementById('pass1');
+        var pass2 = document.getElementById('pass2');
+        var submitBtn = document.getElementById('submitBtn');
+        var pass1Error = document.getElementById('pass1Error');
+        var pass2Error = document.getElementById('pass2Error');
+
+        if (pass1 && pass2 && submitBtn && pass1Error && pass2Error) {
+            // Clear previous error messages
+            pass1Error.innerText = '';
+            pass2Error.innerText = '';
+
+            var minLength = 6;
+            var hasSpecialChar = /[-!@#$%^&*()_+|{}[\]:";'<>?,./]/.test(pass1.value);
+
+            if (pass1.value.length < minLength) {
+                pass1Error.innerText = 'Password should be at least ' + minLength + ' characters long.';
+            }
+
+            if (!hasSpecialChar) {
+                pass1Error.innerText += ' Password should include at least one special character.';
+            }
+
+            if (pass1.value !== pass2.value || pass1.value === '' || pass2.value === '' || pass1Error.innerText !== '') {
+                // Passwords do not match or one of them is empty or requirements not satisfied, disable the submit button
+                submitBtn.setAttribute('disabled', 'disabled');
+            } else {
+                // Passwords match and requirements are satisfied, enable the submit button
+                submitBtn.removeAttribute('disabled');
+            }
+        }
+    }
+</script>
+{% endblock body %}
+

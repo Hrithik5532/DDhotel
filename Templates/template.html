@@ -1,0 +1,427 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from themes.potenzaglobalsolutions.com/html/the-zayka/index-4.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Nov 2023 16:39:00 GMT -->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="keywords" content="HTML5 Template" />
+<meta name="description" content="The Zayka - Multipurpose Restaurant, Food & Cafe HTML5 Template" />
+<meta name="author" content="potenzaglobalsolutions.com" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title> DDHotel - {{title}}</title>
+
+<!-- Favicon -->
+<link rel="shortcut icon" href="../statics/images/favicon.ico" />
+
+<!-- google font -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i|Amatic+SC:400,700|Lilita+One" rel="stylesheet">
+
+<!-- bootstrap -->
+<link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.min.css" %}" />
+
+<!-- font awesome -->
+<link rel="stylesheet" type="text/css" href="{% static "css/font-awesome.min.css" %}" />
+
+<!-- flaticon -->
+<link rel="stylesheet" type="text/css" href="{% static "css/flaticon.css" %}" />
+
+<!-- revolution slider -->
+<link rel="stylesheet" type="text/css" href="../statics/revolution/css/settings.css">
+<link rel="stylesheet" type="text/css" href="../statics/revolution/css/navigation.css">
+
+<!-- mega menu -->
+<link rel="stylesheet" type="text/css" href="{% static "css/mega-menu/mega_menu.css" %}" />
+
+<!-- carousel -->
+<link rel="stylesheet" type="text/css" href="{% static "css/owl-carousel/owl.carousel.min.css" %}" />
+
+<!-- main style -->
+<link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}" />
+
+<!-- responsive -->
+<link rel="stylesheet" type="text/css" href="{% static "css/responsive.css" %}">
+
+<!-- magnific-popup -->
+<link rel="stylesheet" type="text/css" href="{% static "css/magnific-popup/magnific-popup.css" %}" />
+
+<!-- Style customizer -->
+<link rel="stylesheet" type="text/css" href="#" data-style="styles" />
+<link rel="stylesheet" type="text/css" href="{% static "css/style-customizer.css" %}" />
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+<!-- Font Awesome -->
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  rel="stylesheet"
+/>
+<!-- Google Fonts -->
+<link
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+  rel="stylesheet"
+/>
+<!-- MDB -->
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css"
+  rel="stylesheet"
+/>
+<!-- Include Toastr CSS and JS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<!-- Include SweetAlert2 CSS and JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10" />
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<!-- Include Leaflet CSS and JS -->
+
+<!-- Leaflet Routing Machine -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+
+<!-- Leaflet JavaScript -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+{% block head %}
+
+{% endblock head %}
+<style>
+    .reservation {
+        color:white !important;
+        text-decoration: none;
+        position: relative;
+      }
+      
+      .reservation:after {
+        margin-bottom: -5px;
+        color:white !important;
+
+        border-radius: 1em;
+        border-top: .15em solid red;
+        content: "";
+        position: absolute;
+          right: 100%;
+          
+          bottom: .14em;
+          left: 0;
+        transition: right .4s cubic-bezier(0,.5,0,1);
+      }
+      
+      .reservation:hover:after {
+        right: 0;
+        color:white !important;
+        
+
+      }
+      .links:hover{
+        color:white;
+      }
+</style>
+
+
+</head>
+<body>
+
+<!--=================================
+loading -->
+{% comment %} 
+<div id="loading">
+  <div id="loading-center">
+    <img src="../statics/images/loader.gif" alt="">
+   </div>
+</div> {% endcomment %}
+
+<!--=================================
+loading -->
+
+<!--=================================
+ header -->
+
+<header id="header" class="header-2">
+  <div class="topbar " style="padding-top:12px !important; padding-bottom:0px !important">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-6">
+          <div class="topbar-left text-start">
+            <ul>
+              <li><i class="fa fa-phone"></i> +00 123 456 789 </li>
+              <li><a href="#"> <i class="fa fa-envelope-o"></i> example@yoursite.com</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-6">
+          <div class="topbar-right text-end">
+            <ul>
+              <li><a href="#"><i class="fa fa-facebook"></i> </a></li>
+              <li><a href="#"><i class="fa fa-twitter"></i> </a></li>
+              <li><a href="#"><i class="fa fa-instagram"></i> </a></li>
+              <li><div class="search-1">
+                <a class="search-btn" href="javascript:void(0);"></a>
+                <!-- Overlay Search -->
+                <div class="overlay-search">
+                  <div class="container">
+                    <div class="row">
+                      <div class="form_search-wrap">
+                        <form>
+                          <input class="search-input" placeholder="Type and hit Enter..." type="text">
+                          <a href="#" class="search-close">
+                            <span></span>
+                            <span></span>
+                          </a>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- End Overlay Search -->
+                </div>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="topbar-right text-end">
+                <a href="{% url 'reservation' %}" class="reservation">Make Reservation</a>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <!-- mega menu -->
+  <div class="menu">
+    <!-- menu start -->
+    <nav id="menu-1" class="mega-menu ">
+      <!-- menu list items container -->
+      <section class="menu-list-items">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 position-relative">
+              <!-- menu logo -->
+              <ul class="menu-logo">
+                <li class="head-info">
+                  <a href="index.html"><img id="logo_dark_img" src="../statics/images/logo-dark.png" alt="logo"> </a>
+                  <div class="head-info-content">
+                  </div>
+                </li>
+              </ul>
+              <!-- menu links -->
+                <ul class="menu-links">
+                    <!-- active class -->
+                    <li>
+                    <a class="active" href="{% url 'home' %}"> Home <i class="fa  fa-indicator"></i></a>
+                    </li>
+                 
+                    <li>
+                    <a href="{% url 'menu' %}"> Menu <i class="fa fa-indicator"></i> </a>
+                
+                    </li>
+                
+
+                    
+                    <li><a href="{% url 'contact_us' %}"> Contact us</a></li>
+                    {% if  request.user.is_authenticated %}
+                    <li class="profile-dropdown">
+                      <a href="#" class="profile-icon" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                          <i class="fa fa-user"></i> Profile <i class="fa fa-caret-down"></i>
+                      </a>
+                      <ul class="dropdown-menu drop-down-multilevel left-side effect-fade" aria-labelledby="profileDropdown">
+                        <li><a href="{% url 'my-profile' %}">My Profile</a></li>
+                        <li><a href="{% url 'my-cart' %}">My Cart</a></li>
+                        <li><a href="{% url 'my-cart' %}">Order History</a></li>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                      </ul>
+                    </li>
+                    {% else %}
+                    <li><a href="{% url 'login' %}"> login</a></li>
+
+                    {% endif %}
+
+                </ul>
+           </div>
+          </div>
+        </div>
+      </section>
+    </nav>
+  <!-- menu end -->
+  </div>
+</header>
+
+<!--=================================
+header -->
+
+
+{% block body %}
+
+{% endblock body %}
+
+
+<!--=================================
+footer -->
+
+<footer class="footer footer-4 parallax bg-overlay-black-70 page-section-pt" style="background-image: url(../statics/images/bg/06.jpg);">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-6">
+          <div class="logo-sec">
+            <img id="logo-footer" class="img-fluid footer-logo" src="{% static 'images/logo.png' %} " alt="">
+            <p class="text-white">The Zayka is an enchanting and easy to use Restaurant HTML template that allows you to tell your story in a dynamic way. </p>
+            <p class="text-white"> Template is packed with everything you need to create a new website. you to tell your story in a dynamic way </p>
+            <a class="text-orange" href="#">Read More</a></div>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-6">
+            <div class="opening-time">
+              <h4 class="text-white"><span class="text-orange">Open</span> time</h4>
+              <ul>
+                <li><strong>Mon-Friday</strong>  <span class="text-end">8am - 2pm </span></li>
+                <li><strong>Saturday</strong>  <span>10am - 4pm</span></li>
+                <li><strong>Sunday</strong>  <span >11am - 4pm</span></li>
+                <li class="close-day"><span class="graph-icon flaticon-closed-sign"></span><em class="text-orange">on public holidays</em></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-3 col-sm-6">
+            <div class="opening-time">
+              <h4 class="text-white"><span class="text-orange">Userful</span> Links</h4>
+              <ul>
+                <li><i class="fa fa-dot-circle-o"></i><a class="text-orange links" style="margin-left:3px" href="{% url 'home' %}">Articles</a>  </li>
+                <li><i class="fa fa-dot-circle-o"></i><a class="text-orange links" style="margin-left:3px" href="{% url 'review' %}">Reviews</a>  </li>
+                <li><i class="fa fa-dot-circle-o"></i><a class="text-orange links" style="margin-left:3px" href="{% url 'menu' %}">Menu</a>  </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="col-lg-4 col-md-3 col-sm-6">
+            <div class="contact">
+              <h4 class="text-white"><span class="text-orange">CONTACT</span>  US</h4>
+              <p class="text-white"><i class="fa fa-map-marker"></i>16 Headingley Lane, Headingley, Leeds, LS62AS</p>
+              <p class="text-white"><i class="fa  fa-phone"></i>(01) 123 456 7890</p>
+              <p><a href="#" class="text-white"> <i class="fa fa-envelope-o"></i>info@bombay2goa.co.uk</a></p>
+              
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="footer">
+        
+        <div class="copyright d-flex justify-content-center"> <p class="text-white"> &copy;Copyright <span id="copyright"> <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script></span> All right reserved. Designed by <a href="https://himanicc.com/" target="_blank"> www.Himanicc.com</a></p>
+        </div>
+        
+    </div>
+</footer>
+  
+ 
+  
+  <div id="back-to-top"><a class="top arrow" href="#top"><i class="fa fa-long-arrow-up"></i></a></div>
+  
+
+  
+  <!-- JS Global Compulsory (Do not remove)-->
+    {% block jscript %}
+    {% endblock jscript%}
+    <!-- MDB -->
+
+    {% if messages %}
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Iterate through Django messages and show SweetAlert2 for each
+                {% for message in messages %}
+                    Swal.fire({
+                        icon: '{{message.tags}}',  // You can customize the icon
+                        title: '{{ message.tags }}',
+                        text: '{{ message }}',
+                    });
+                {% endfor %}
+            });
+        </script>
+    {% endif %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script><script>
+  function getLocation() {
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
+      } else {
+          console.log("Geolocation is not supported by this browser.");
+      }
+  }
+
+  function successFunction(position) {
+      var userLatitude = position.coords.latitude;
+      var userLongitude = position.coords.longitude;
+
+      // Now you can use these coordinates in your application, for example, send them to your Django backend.
+      console.log("User Location:", userLatitude, userLongitude);
+  }
+
+  function errorFunction(error) {
+      console.log("Error getting user location:", error.message);
+  }
+
+  // Call the function to get the user's location
+  getLocation();
+</script>
+  <!-- jquery  -->
+  <script type="text/javascript" src="../statics/js/jquery-3.6.0.min.js"></script>
+  
+  <!-- popper  -->
+  <script type="text/javascript" src="../statics/js/popper.min.js"></script>
+  
+  <!-- bootstrap -->
+  <script type="text/javascript" src="../statics/js/bootstrap.min.js"></script>
+  
+  <!-- Page JS Implementing Plugins (Remove the plugin script here if site does not use that feature)-->
+  
+  <!-- mega menu -->
+  <script type="text/javascript" src="../statics/js/mega-menu/mega_menu.js"></script>
+  
+  <!-- owl carousel -->
+  <script type="text/javascript" src="../statics/js/owl-carousel/owl.carousel.min.js"></script>
+  
+  <!-- appear -->
+  <script type="text/javascript" src="../statics/js/jquery.appear.js"></script>
+  
+  <!-- counter -->
+  <script type="text/javascript" src="../statics/js/counter/jquery.countTo.js"></script>
+  
+  <!-- popup -->
+  <script type="text/javascript" src="../statics/js/popup/jquery.magnific-popup.js"></script>
+  
+  <!-- isotope -->
+  <script type="text/javascript" src="../statics/js/isotope/isotope.pkgd.min.js"></script>
+  
+  <!-- videoBG -->
+  <script type="text/javascript" src="../statics/js/video/jquery.vide.js"></script>
+  
+  <!-- REVOLUTION JS FILES -->
+  <script type="text/javascript" src="../statics/revolution/js/jquery.themepunch.tools.min.js"></script>
+  <script type="text/javascript" src="../statics/revolution/js/jquery.themepunch.revolution.min.js"></script>
+  <!-- SLIDER REVOLUTION 5.0 EXTENSIONS
+  (Load Extensions only on Local File Systems !
+  The following part can be removed on Server for On Demand Loading) -->
+  <script type="text/javascript" src="../statics/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+  <script type="text/javascript" src="../statics/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
+  <script type="text/javascript" src="../statics/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+  <script type="text/javascript" src="../statics/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+  <script type="text/javascript" src="../statics/revolution/js/extensions/revolution.extension.migration.min.js"></script>
+  <script type="text/javascript" src="../statics/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+  <script type="text/javascript" src="../statics/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+  <script type="text/javascript" src="../statics/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+  <script type="text/javascript" src="../statics/revolution/js/extensions/revolution.extension.video.min.js"></script>
+  <!-- SLIDER REVOLUTION CUSTOM  -->
+  <script type="text/javascript" src="../statics/revolution/js/revolution-custom.js"></script>
+  
+  <!-- style customizer  -->
+  <script type="text/javascript" src="../statics/js/style-customizer.js"></script>
+  
+  <!-- custom -->
+  <script type="text/javascript" src="../statics/js/custom.js"></script>
+  
+  </body>
+  
+  <!-- Mirrored from themes.potenzaglobalsolutions.com/html/the-zayka/index-4.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Nov 2023 16:40:12 GMT -->
+  </html>
+  
