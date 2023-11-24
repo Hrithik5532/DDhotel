@@ -413,38 +413,38 @@ hr {
             <div class="row">
                 {% for item in products %}
                   {% if item.subcategory.name == subcat.name %}
-                  <div class="col-lg-6 col-md-6">
+                                    <div class="col-lg-6 col-md-6">
+                            
                   
-                          
-                    <div class="menu-body menu-white menu-left">
-                      <div class="menu-thumbnail">
-                        <img class="img-fluid center-block" src="../media/{{item.img}}" alt="">
-                      </div>
-                      <div class="menu-details" style="display:block !important;">
-                        <div class="menu-title clearfix">
-                          <h4>{{item.name}}</h4>
-                          {% if item.id in cart_item_list %}
-                          <button class="price " title="Remove From cart" style="margin-left: 2rem;" onclick="removeFromCart({{item.id}})">-</button>
-                          {% else %}
-                          <button class="price " title="Add to cart" style="margin-left: 2rem;" onclick="addToCart({{item.id}})">+</button>
-                          <div class="qty-counter price" style="margin-left: 2rem;">
-
-                            <button class="quantity-adjust " onclick="adjustQuantity('{{item.id}}', -1)">-</button>
-                                          <span id="quantity{{item.id}}" class="quantity">0</span>
-                            <button class="quantity-adjust " onclick="adjustQuantity('{{item.id}}', 1)">+</button>
+                                      <div class="menu-body menu-white menu-left">
+                                        <div class="menu-thumbnail">
+                                          <img class="img-fluid center-block" src="../media/{{item.img}}" alt="">
+                                        </div>
+                                        <div class="menu-details" style="display:block !important;">
+                                          <div class="menu-title clearfix">
+                                            <h4>{{item.name}}</h4>
+                                            {% if item.id in cart_item_list %}
+                                            <button class="price " title="Remove From cart" style="margin-left: 2rem;" onclick="removeFromCart({{item.id}})">-</button>
+                                            {% else %}
+                                            <button class="price " title="Add to cart" style="margin-left: 2rem;" onclick="addToCart({{item.id}})">+</button>
+                                            <div class="qty-counter price" style="margin-left: 2rem;">
+        
+                                              <button class="quantity-adjust " onclick="adjustQuantity('{{item.id}}', -1)">-</button>
+                                              <span id="quantity{{item.id}}" class="quantity">0</span>
+                                              <button class="quantity-adjust " onclick="adjustQuantity('{{item.id}}', 1)">+</button>
+                                              
+                                            </div>
+                                            <div class="menu-description">
+                                              <p>{{item.description}}</p>
+                                            </div>
+                                            {% endif %}
+                                            <span class="price ">₹.{{item.price}}</span>
+                                          </div>
                                           
-                          </div>
-                          <div class="menu-description">
-                            <p>{{item.description}}</p>
-                          </div>
-                          {% endif %}
-                          <span class="price ">₹.{{item.price}}</span>
-                        </div>
-                        
-                      </div>
-                    </div>
-
-                  </div>
+                                        </div>
+                                      </div>
+        
+                                    </div>
                 
                   {% endif %}
                   
