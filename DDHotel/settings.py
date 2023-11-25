@@ -44,7 +44,10 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.google'
+    'allauth.socialaccount.providers.google',
+    'Articles',
+    'ckeditor',
+    'taggit'
 
 ]
 
@@ -153,7 +156,7 @@ MEDIA_URL = '/media/'
 #static files
 STATIC_URL = 'statics/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'statics')
-STATICFILES_DIRS = [BASE_DIR / "statics",]
+STATICFILES_DIRS = [BASE_DIR / "staticfiles",]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "authentication.User"

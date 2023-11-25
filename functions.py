@@ -36,7 +36,7 @@ text-align: center; margin: 0 auto; width: 650px; font-family: 'Public Sans', sa
                             style="background-color: #f7f7f7;display: flex;align-items: center;justify-content: space-between;width: 100%;">
                             <td class="header-logo" style="padding: 10px 32px;">
                                 <a href="../front-end/index.html" style="display: block; text-align: left;">
-                                    <img src="http://127.0.0.1:8000/static/assets/images/logo/logo_5.png" class="main-logo" alt="logo">
+                                    <img src="http://103.172.92.174/static/assets/images/logo/logo_5.png" class="main-logo" alt="logo">
                                 </a>
                             </td>
                         </tr>
@@ -180,7 +180,7 @@ text-align: center; margin: 0 auto; width: 650px; font-family: 'Public Sans', sa
                             style="background-color: #f7f7f7;display: flex;align-items: center;justify-content: space-between;width: 100%;">
                             <td class="header-logo" style="padding: 10px 32px;">
                                 <a href="../front-end/index.html" style="display: block; text-align: left;">
-                                    <img src="http://127.0.0.1:8000/static/assets/images/logo/logo_5.png" class="main-logo" alt="logo">
+                                    <img src="http://103.172.92.174/static/assets/images/logo/logo_5.png" class="main-logo" alt="logo">
                                 </a>
                             </td>
                         </tr>
@@ -307,7 +307,7 @@ def send_email_receipt(request,order_id,user):
     EMAIL_HOST = os.environ.get("EMAIL_HOST")
     EMAIL_PORT = os.environ.get("EMAIL_PORT")
 
-    invoice_url =f'http://127.0.0.1:8000/invoice/{order_id}'
+    invoice_url =f'http://103.172.92.174/invoice/{order_id}'
 
     email_backend = EmailBackend(
         host=EMAIL_HOST,
@@ -338,7 +338,7 @@ def send_email_receipt(request,order_id,user):
                                     style="background-color: #f7f7f7;display: flex;align-items: center;justify-content: space-between;width: 100%;">
                                     <td class="header-logo" style="padding: 10px 32px;">
                                         <a href="../front-end/index.html" style="display: block; text-align: left;">
-                                            <img src="http://127.0.0.1:8000/static/assets/images/logo/logo_5.png" class="main-logo" alt="logo">
+                                            <img src="http://103.172.92.174/static/assets/images/logo/logo_5.png" class="main-logo" alt="logo">
                                         </a>
                                     </td>
                                 </tr>

@@ -28,6 +28,7 @@ urlpatterns = [
     path('order-menu/', include('Product.urls')),
     path('accounts/', include('allauth.urls')), 
     path('forms/',include('Reservations_Reviews_Contact.urls')),
+    path('articles/',include('Articles.urls')),
     path('logout', LogoutView.as_view()) 
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

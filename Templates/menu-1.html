@@ -520,7 +520,7 @@ function addToCart(itemId, itemPrice) {
     event.preventDefault(); // Prevent the default form submission behavior
   
     const qty = document.getElementById('quantity' + itemId).innerText;
-    const apiUrl = `http://127.0.0.1:8000/add-cart?itemId=${itemId}&qty=${qty}`;
+    const apiUrl = `http://103.172.92.174/add-cart?itemId=${itemId}&qty=${qty}`;
   
     fetch(apiUrl, {
       method: 'GET',
@@ -574,7 +574,7 @@ function addToCart(itemId, itemPrice) {
   function removeFromCart(itemId) {
     event.preventDefault(); // Prevent the default form submission behavior
   
-    const apiUrl = `http://127.0.0.1:8000/remove-from-cart?itemId=${itemId}`;
+    const apiUrl = `http://103.172.92.174/remove-from-cart?itemId=${itemId}`;
   
     fetch(apiUrl, {
       method: 'GET',
