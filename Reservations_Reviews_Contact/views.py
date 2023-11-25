@@ -75,4 +75,9 @@ def review(request):
     else:
         orders = []
     reviwes = Review.objects.all().distinct()[::-1]
-    return render(request,'review-form.html',{'items':items,'orders':orders,'reviwes':reviwes})
+    if request.GET.get('orderId'):
+        selected_order_id = int(request.GET.get('orderId'))
+    else:
+        selected_order_id =None
+    star_range = [1,2,3,4,5]
+    return render(request,'review-form.html',{'star_range':star_range,'items':items,'orders':orders,'reviwes':reviwes,'selected_order_id':selected_order_id})

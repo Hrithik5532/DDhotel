@@ -113,9 +113,12 @@ def add_address(request):
     return redirect('my-cart')
 
 def my_profile(request):
-    return render(request,'Profile.html')
+    address = Address.objects.filter(user = request.user)
+    return render(request,'Profile.html',{'address':address})
 
-
+def order_history(request):
+    orders = Order.objects.filter(customer_email=request.user.email)[::-1]
+    return render(request,'order-history.html',{'orders':orders})
 
 def otp(request):
     if request.user.is_authenticated:

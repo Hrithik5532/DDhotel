@@ -5,135 +5,74 @@
     <!--=================================
  intro bg -->
  <style>
-    .star {
-        font-size: 30px;
-        color: #cccccc;
-        cursor: pointer;
-    }
-
-    .star:hover,
-    .star.active {
-        color: #ffd700; /* Change this to your desired star color */
-    }
-    .align-center {
-        text-align: center;
-    }
-    .hash-list {
-        display: block;
-        padding: 0;
-        margin: 0 auto;
-    }
-    
-    @media (min-width: 768px){
-        .hash-list.cols-3 > li:nth-last-child(-n+3) {
-            border-bottom: none;
-        }
-    }
-    @media (min-width: 768px){
-        .hash-list.cols-3 > li {
-            width: 33.3333%;
-        }
-    }
-    .hash-list > li {
-        display: block;
-        float: left;
-        border-right: 1px solid rgba(0, 0, 0, 0.2);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    }
-    .pad-30, .pad-30-all > * {
-        padding: 30px;
-    }
-    img {
-        border: 0;
-    }
-    .mgb-20, .mgb-20-all > * {
-        margin-bottom: 20px;
-    }
-    .wpx-100, .wpx-100-after:after {
-        width: 100px;
-    }
-    .img-round, .img-rel-round {
-        border-radius: 50%;
-    }
-    .padb-30, .padb-30-all > * {
-        padding-bottom: 30px;
-    }
-    
-    .mgb-40, .mgb-40-all > * {
-        margin-bottom: 40px;
-    }
-    .align-center {
-        text-align: center;
-    }
-    [class*="line-b"] {
-        position: relative;
-        padding-bottom: 20px;
-        border-color: #E6AF2A;
-    }
-    .fg-text-d, .fg-hov-text-d:hover, .fg-active-text-d.active {
-        color: #222;
-    }
-    .font-cond-b {
-        font-weight: 700 !important;
-    }
+    .home-testimonial{background-color: #231834;height: 380px}.home-testimonial-bottom{background-color: #f8f8f8;transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;margin-top: 20px;margin-bottom: 0px;position: relative;height: 130px;top: 190px}.home-testimonial h3{color: var(--orange);font-size: 14px;font-weight: 500;text-transform: uppercase}.home-testimonial h2{color: white;font-size: 28px;font-weight: 700}.testimonial-inner{position: relative;top: -174px}.testimonial-pos{position: relative;top: 24px}.testimonial-inner .tour-desc{border-radius: 5px;padding: 40px}.color-grey-3{font-family: "Montserrat", Sans-serif;font-size: 14px;color: #6c83a2}.testimonial-inner img.tm-people{width: 60px;height: 60px;-webkit-border-radius: 50%;border-radius: 50%;-o-object-fit: cover;object-fit: cover;max-width: none}.link-name{font-family: "Montserrat", Sans-serif;font-size: 14px;color: #6c83a2}.link-position{font-family: "Montserrat", Sans-serif;font-size: 12px;color: #6c83a2}
 </style>
-    <div class="inner-intro parallax bg-overlay-black-70" style="background-image: url(../statics/images/bg/02.jpg);">
-        <div class="container">
-            <div class="row text-center intro-title">
-                <div class="col-md-12">
-                    <h1 class="text-orange">Review</h1>
-                    <p class="text-white">Your review matters!</p>
-                    <ul class="page-breadcrumb">
-                        <li><a href="{% url 'home' %}"><i class="fa fa-home"></i> Home</a> <i class="fa fa-angle-double-right"></i></li>
-                        <li><span>Review Us</span></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
+ 
     <!--=================================
  intro bg -->
 
     <!--=================================
  Review -->
-<section class="mt-5">
-    <ul class="nav nav-tabs tabs-link white justify-content-center" id="myTab" role="tablist">
-
+ <section>
+    <ul class="nav nav-tabs tabs-link white mt-2 mb-4 justify-content-center"  id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="posts-tab" data-bs-toggle="tab" data-bs-target="#posts" type="button" role="tab" aria-controls="posts" aria-selected="true">All Reviwes</button>
+            <button class="nav-link active" id="allReviews-tab" data-bs-toggle="tab" data-bs-target="#allReviews" type="button" role="tab" aria-controls="allReviews" aria-selected="true">All Reviews</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link" id="form-tab" data-bs-toggle="tab" data-bs-target="#form" type="button" role="tab" aria-controls="form" aria-selected="false">Review Form</button>
+            <button class="nav-link" id="form-tab" data-bs-toggle="tab" data-bs-target="#form" type="button" role="tab" aria-controls="form" aria-selected="false">Form</button>
         </li>
-        
-    
-      </ul>
+    </ul>
 </section>
 
-<section>
-    <div class=" Review tab-pane active show mt-4" id="posts" role="tabpanel" aria-labelledby="lunch-tab">
-        <div class="mgb-40 padb-30 auto-invert line-b-4 align-center">
-            <h1 class="font-cond-b fg-text-d lts-md fs-300 fs-300-xs no-mg" contenteditable="false">Read Customer Reviews</h1>
-        </div>
-        <ul class="hash-list cols-3 cols-1-xs pad-30-all align-center text-sm">
-            <li>
-                {% for i in reviwes %}
-                
-                <img src="../media/{{i.file}}" class="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]">
-                <p class="fs-110 font-cond-l" contenteditable="false">"{{i.message}} "</p>
-                <h5 class="font-cond mgb-5 fg-text-d fs-130" contenteditable="false">{{i.name}}</h5>    <div class="rating-container" data-rating="{{ i.rating }}"></div>
-                <div class="rating-container" data-rating="{{ i.rating }}"></div>
+ <section  class="tab-content">
+    <div class="tab-pane fade show active" id="allReviews" role="tabpanel" aria-labelledby="allReviews-tab">
 
-                {% endfor %}
-            </li>
+        <div class="row d-flex justify-content-center">
+        <div class="col-md-10 col-xl-8 text-center">
+            <h3 class="mb-4">Testimonials</h3>
+            <p class="mb-4 pb-2 mb-md-5 pb-md-0">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet
+            numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum
+            quisquam eum porro a pariatur veniam.
+            </p>
+        </div>
+        </div>
+        
+        <div class="row text-center">
+            {% for i in reviwes %}
             
-            
-          </ul>
+                <div class="col-md-3 mb-5 mb-md-0">
+                    <div class="d-flex justify-content-center mb-4">
+                    <img src="../media/{{i.file}}"
+                        class="rounded-circle shadow-1-strong" width="150" height="150" />
+                    </div>
+                    <h5 class="mb-3">{{i.name}}</h5>
+                    <p class="px-xl-3">
+                    <i class="fas fa-quote-left pe-2"></i>{{i.message}}<i class="fas fa-quote-right pe-2"></i>
+                    </p>
+                    <ul class="list-unstyled d-flex justify-content-center mb-0">
+                        {% for rating in star_range %}
+                            {% if rating <= i.rating %}
+                                <li>
+                                    <i class="fas fa-star fa-sm text-warning"></i>
+                                </li>
+                            {% else %}
+                                <li>
+                                    <i class="far fa-star fa-sm text-warning"></i>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+
+        
+        </div>
     </div>
 
-    <div class="page-section-ptb Review tab-pane fade" id="form" role="tabpanel" aria-labelledby="lunch-tab">
-            <div class="container">
+
+    <div class="tab-pane fade" id="form" role="tabpanel" aria-labelledby="form-tab">
+        <div class="container">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="section-title text-center">
@@ -199,9 +138,14 @@
                                             <div class="selected-box">
                                                 <label for=""><b> Select Order Id :</b></label>
                                                 <select name="order_id" placeholder="Select food item" >
-                                                    <option  checked> -- select --  </option>
+                                                    <option  selected> -- select --  </option>
                                                     {% for order in orders %}
-                                                        <option value="{{order.id}}">#  {{order.id}}</option>
+                                                    {% if order.id == selected_order_id %}
+                                                    <option value="{{order.id}}" selected>#  {{order.id}}</option>
+
+                                                    {% else %}
+                                                    <option value="{{order.id}}">#  {{order.id}}</option>
+                                                    {% endif %}
                                                     {% endfor %}    
                                                     
                                                 </select>
@@ -253,15 +197,14 @@
             </div>
     </div>
 </section>
-
     <!--=================================
  Review -->
- 
-<script>
+ <script>
     document.addEventListener('DOMContentLoaded', function () {
         const starRating = document.getElementById('starRating');
         const ratingInput = document.getElementById('ratingInput');
         const maxStars = 5;
+        const starSize = 30; // Set the star size in pixels
         let rating = 0;
 
         // Create star icons
@@ -271,6 +214,7 @@
             star.innerHTML = '&#9733;'; // Unicode character for a star
             star.dataset.value = i; // Set the value attribute to the star's position
             star.addEventListener('click', handleStarClick);
+            star.style.fontSize = starSize + 'px'; // Set the star size
             starRating.appendChild(star);
         }
 
@@ -292,10 +236,50 @@
 
             stars.forEach(star => {
                 const value = star.dataset.value;
-                star.classList.toggle('active', value <= rating);
+                const starColor = value <= rating ? '#e8e845' : '#cccccc';
+                star.style.color = starColor;
             });
         }
     });
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var allReviewsTab = document.getElementById('allReviews-tab');
+        var formTab = document.getElementById('form-tab');
+        var allReviewsSection = document.getElementById('allReviews');
+        var formSection = document.getElementById('form');
+
+        // Show All Reviews Section by default
+        allReviewsTab.classList.add('active');
+        allReviewsSection.classList.add('show', 'active');
+
+        // Check if the URL contains the anchor #form
+        if (window.location.hash === '#form') {
+            formTab.classList.add('active');
+            allReviewsTab.classList.remove('active');
+
+            formSection.classList.add('show', 'active');
+            allReviewsSection.classList.remove('show', 'active');
+        }
+
+        // Toggle between All Reviews and Form Sections
+        allReviewsTab.addEventListener('click', function () {
+            allReviewsTab.classList.add('active');
+            formTab.classList.remove('active');
+
+            allReviewsSection.classList.add('show', 'active');
+            formSection.classList.remove('show', 'active');
+        });
+
+        formTab.addEventListener('click', function () {
+            formTab.classList.add('active');
+            allReviewsTab.classList.remove('active');
+
+            formSection.classList.add('show', 'active');
+            allReviewsSection.classList.remove('show', 'active');
+        });
+    });
+</script>
+
 
  {% endblock body %}

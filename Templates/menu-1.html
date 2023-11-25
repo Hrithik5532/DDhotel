@@ -198,7 +198,7 @@ hr {
                                               <p>{{item.description}}</p>
                                             </div>
                                             {% endif %}
-                                            <span class="price ">₹.{{item.price}}</span>
+                                            <span class="price ">£.{{item.price}}</span>
                                           </div>
                                           
                                         </div>
@@ -247,7 +247,7 @@ hr {
                                               <p>{{item.description}}</p>
                                             </div>
                                             {% endif %}
-                                            <span class="price ">₹.{{item.price}}</span>
+                                            <span class="price ">£.{{item.price}}</span>
                                           </div>
                                           
                                         </div>
@@ -288,7 +288,7 @@ hr {
                                           <p>{{item.description}}</p>
                                         </div>
                                         {% endif %}
-                                        <span class="price ">₹.{{item.price}}</span>
+                                        <span class="price ">£.{{item.price}}</span>
                                       </div>
                                       
                                     </div>
@@ -326,7 +326,7 @@ hr {
                                         <p>{{item.description}}</p>
                                       </div>
                                       {% endif %}
-                                      <span class="price ">₹.{{item.price}}</span>
+                                      <span class="price ">£.{{item.price}}</span>
                                     </div>
                                     
                                   </div>
@@ -364,7 +364,7 @@ hr {
                                         <p>{{item.description}}</p>
                                       </div>
                                       {% endif %}
-                                      <span class="price ">₹.{{item.price}}</span>
+                                      <span class="price ">£.{{item.price}}</span>
                                     </div>
                                     
                                   </div>
@@ -438,7 +438,7 @@ hr {
                                               <p>{{item.description}}</p>
                                             </div>
                                             {% endif %}
-                                            <span class="price ">₹.{{item.price}}</span>
+                                            <span class="price ">£.{{item.price}}</span>
                                           </div>
                                           
                                         </div>
@@ -488,19 +488,32 @@ hr {
 </div>
 <script>
   function adjustQuantity(itemId, delta) {
-      var quantityElement = document.getElementById('quantity' + itemId);
-      var currentQuantity = parseInt(quantityElement.innerText);
-      var newQuantity = Math.min(Math.max(currentQuantity + delta, 0), 10); // Adjust quantity between 0 and 10
-      quantityElement.innerText = newQuantity;
-  }
+    // Get all elements with the same itemId
+    var quantityElements = document.querySelectorAll('[id^=quantity' + itemId + ']');
 
-  function addToCart(itemId, itemPrice) {
-      var quantity = parseInt(document.getElementById('quantity' + itemId).innerText);
-      var totalPrice = quantity * parseFloat(itemPrice);
-      
-      // You can send the quantity and total price to your addToCart function
-      console.log(`Adding ${quantity} item(s) with total price ₹.${totalPrice} to the cart for item ${itemId}`);
-  }
+    quantityElements.forEach(function (quantityElement) {
+        var currentQuantity = parseInt(quantityElement.innerText);
+        var newQuantity = Math.min(Math.max(currentQuantity + delta, 0), 10);
+        quantityElement.innerText = newQuantity;
+    });
+}
+
+function addToCart(itemId, itemPrice) {
+    var quantity = parseInt(document.getElementById('quantity' + itemId).innerText);
+    var totalPrice = quantity * parseFloat(itemPrice);
+
+    // Get all elements with the same itemId
+    var cartButtons = document.querySelectorAll('[onclick^="addToCart(' + itemId + ']');
+
+    cartButtons.forEach(function (cartButton) {
+        // Update the button or perform any other necessary actions
+        console.log(`Updating cart button for item ${itemId}`);
+    });
+
+    // You can send the quantity and total price to your addToCart function
+    console.log(`Adding ${quantity} item(s) with total price £.${totalPrice} to the cart for item ${itemId}`);
+}
+
 </script>
 <script>
   function addToCart(itemId) {
