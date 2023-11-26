@@ -1,0 +1,374 @@
+{% extends "template.html" %}
+
+{% block body %}
+<style>
+.card {
+    background: #fff;
+    transition: .5s;
+    border: 0;
+    margin-bottom: 30px;
+    border-radius: .55rem;
+    position: relative;
+    width: 100%;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
+}
+.card .body {
+    color: #444;
+    padding: 20px;
+    font-weight: 400;
+}
+.card .header {
+    color: #444;
+    padding: 20px;
+    position: relative;
+    box-shadow: none;
+}
+.single_post {
+    -webkit-transition: all .4s ease;
+    transition: all .4s ease
+}
+
+.single_post .body {
+    padding: 30px
+}
+
+.single_post .img-post {
+    position: relative;
+    overflow: hidden;
+    max-height: 500px;
+    margin-bottom: 30px
+}
+
+.single_post .img-post>img {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+    -webkit-transition: -webkit-transform .4s ease, opacity .4s ease;
+    transition: transform .4s ease, opacity .4s ease;
+    max-width: 100%;
+    filter: none;
+    -webkit-filter: grayscale(0);
+    -webkit-transform: scale(1.01)
+}
+
+.single_post .img-post:hover img {
+    -webkit-transform: scale(1.02);
+    -ms-transform: scale(1.02);
+    transform: scale(1.02);
+    opacity: .7;
+    filter: gray;
+    -webkit-filter: grayscale(1);
+    -webkit-transition: all .8s ease-in-out
+}
+
+.single_post .img-post:hover .social_share {
+    display: block
+}
+
+.single_post h3 {
+    font-size: 20px;
+    text-transform: uppercase
+}
+
+.single_post h3 a {
+    color: #242424;
+    text-decoration: none
+}
+
+.single_post p {
+    font-size: 16px;
+    line-height: 26px;
+    font-weight: 300;
+    margin: 0
+}
+
+.single_post .blockquote p {
+    margin-top: 0 !important
+}
+
+.single_post .meta {
+    list-style: none;
+    padding: 0;
+    margin: 0
+}
+
+.single_post .meta li {
+    display: inline-block;
+    margin-right: 15px
+}
+
+.single_post .meta li a {
+    font-style: italic;
+    color: #959595;
+    text-decoration: none;
+    font-size: 12px
+}
+
+.single_post .meta li a i {
+    margin-right: 6px;
+    font-size: 12px
+}
+
+.single_post2 {
+    overflow: hidden
+}
+
+.single_post2 .content {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding-left: 80px;
+    position: relative
+}
+
+.single_post2 .content .actions_sidebar {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 60px
+}
+
+.single_post2 .content .actions_sidebar a {
+    display: inline-block;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    margin-right: 0;
+    text-align: center;
+    border-right: 1px solid #e4eaec
+}
+
+.single_post2 .content .title {
+    font-weight: 100
+}
+
+.single_post2 .content .text {
+    font-size: 15px
+}
+
+.right-box .categories-clouds li {
+    display: inline-block;
+    margin-bottom: 5px
+}
+
+.right-box .categories-clouds li a {
+    display: block;
+    border: 1px solid;
+    padding: 6px 10px;
+    border-radius: 3px
+}
+
+.right-box .instagram-plugin {
+    overflow: hidden
+}
+
+.right-box .instagram-plugin li {
+    float: left;
+    overflow: hidden;
+    border: 1px solid #fff
+}
+
+.comment-reply li {
+    margin-bottom: 15px
+}
+
+.comment-reply li:last-child {
+    margin-bottom: none
+}
+
+.comment-reply li h5 {
+    font-size: 18px
+}
+
+.comment-reply li p {
+    margin-bottom: 0px;
+    font-size: 15px;
+    color: #777
+}
+
+.comment-reply .list-inline li {
+    display: inline-block;
+    margin: 0;
+    padding-right: 20px
+}
+
+.comment-reply .list-inline li a {
+    font-size: 13px
+}
+
+@media (max-width: 640px) {
+    .blog-page .left-box .single-comment-box>ul>li {
+        padding: 25px 0
+    }
+    .blog-page .left-box .single-comment-box ul li .icon-box {
+        display: inline-block
+    }
+    .blog-page .left-box .single-comment-box ul li .text-box {
+        display: block;
+        padding-left: 0;
+        margin-top: 10px
+    }
+   
+}
+</style>
+
+<div id="main-content" class="blog-page">
+        <div class="container">
+            <div class="row clearfix">
+                <div class="col-lg-8 col-md-12 left-box">
+                    <div class="card single_post">
+                        <div class="body">
+                            <div class="img-post">
+                                <img class="d-block img-fluid" src="/../media/{{article.thumbnail}}" style="width:100%;height:100%" alt="First slide">
+                            </div>
+                            <h1>{{article.name}}</h1>
+                            <span>{{article.writer}}, {{article.created_at}}</span>
+                            <p>{{article.content | safe}}</p>
+                            <hr>
+                            <div>
+                                <h3>Tags:</h3>
+                                <div class="d-flex">
+                                    {% for tag in article.tags.all %}
+                                        <a href="{% url 'all_articles' %}?tag={{tag.name}}" class="btn tag-btn">{{tag.name}}</a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+                    {% comment %} <div class="card">
+                            <div class="header">
+                                <h2>Comments 3</h2>
+                            </div>
+                            <div class="body">
+                                <ul class="comment-reply list-unstyled">
+                                    <li class="row clearfix">
+                                        <div class="icon-box col-md-2 col-4"><img class="img-fluid img-thumbnail" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Awesome Image"></div>
+                                        <div class="text-box col-md-10 col-8 p-l-0 p-r0">
+                                            <h5 class="m-b-0">Gigi Hadid </h5>
+                                            <p>Why are there so many tutorials on how to decouple WordPress? how fast and easy it is to get it running (and keep it running!) and its massive ecosystem. </p>
+                                            <ul class="list-inline">
+                                                <li><a href="javascript:void(0);">Mar 09 2018</a></li>
+                                                <li><a href="javascript:void(0);">Reply</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="row clearfix">
+                                        <div class="icon-box col-md-2 col-4"><img class="img-fluid img-thumbnail" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="Awesome Image"></div>
+                                        <div class="text-box col-md-10 col-8 p-l-0 p-r0">
+                                            <h5 class="m-b-0">Christian Louboutin</h5>
+                                            <p>Great tutorial but few issues with it? If i try open post i get following errors. Please can you help me?</p>
+                                            <ul class="list-inline">
+                                                <li><a href="javascript:void(0);">Mar 12 2018</a></li>
+                                                <li><a href="javascript:void(0);">Reply</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="row clearfix">
+                                        <div class="icon-box col-md-2 col-4"><img class="img-fluid img-thumbnail" src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="Awesome Image"></div>
+                                        <div class="text-box col-md-10 col-8 p-l-0 p-r0">
+                                            <h5 class="m-b-0">Kendall Jenner</h5>
+                                            <p>Very nice and informative article. In all the years I've done small and side-projects as a freelancer, I've ran into a few problems here and there.</p>
+                                            <ul class="list-inline">
+                                                <li><a href="javascript:void(0);">Mar 20 2018</a></li>
+                                                <li><a href="javascript:void(0);">Reply</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>                                        
+                            </div>
+                            </div>
+                            <div class="card">
+                            <div class="header">
+                                <h2>Leave a reply <small>Your email address will not be published. Required fields are marked*</small></h2>
+                            </div>
+                            <div class="body">
+                                <div class="comment-form">
+                                    <form class="row clearfix">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Your Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="Email Address">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <textarea rows="4" class="form-control no-resize" placeholder="Please type what you want..."></textarea>
+                                            </div>
+                                            <button type="submit" class="btn btn-block btn-primary">SUBMIT</button>
+                                        </div>                                
+                                    </form>
+                                </div>
+                            </div>
+                    </div> {% endcomment %}
+                </div>
+                <div class="col-lg-4 col-md-12 right-box">
+                    <div class="card">
+                        <form action="{% url 'all_articles' %}" method="GET">
+                        <div class="body search">
+                            <div class="input-group m-b-0">
+                                <input type="text" class="form-control" name="search" placeholder="Search..." Required>  
+                                <div class="input-group-prepend">
+                                    <button type="submit" style="border:0px;background-color:white;"><span class="input-group-text"><i class="fa fa-search"></i></span>
+                                </button>                                  
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                    <div class="card">
+                        <div class="header">
+                            <h2>Tags :</h2>
+                        </div>
+                        <div class="body widget">
+                            <ul class="list-unstyled categories-clouds m-b-0">
+                                {% for tag in tags %}
+                                
+                                <li><a href="{% url 'all_articles' %}?tag={{tag.name}}">{{tag.name}}</a></li>
+                                {% endfor %}
+                               
+                            </ul>
+                        </div>
+                    </div>
+                    {% comment %}                 
+                    <div class="card">
+                        <div class="header">
+                            <h2>Instagram Post</h2>
+                        </div>
+                        <div class="body widget">
+                            <ul class="list-unstyled instagram-plugin m-b-0">
+                                <li><a href="javascript:void(0);"><img src="https://www.bootdey.com/image/100x100/87CEFA/000000" alt="image description"></a></li>
+                                <li><a href="javascript:void(0);"><img src="https://www.bootdey.com/image/100x100/87CEFA/000000" alt="image description"></a></li>
+                                <li><a href="javascript:void(0);"><img src="https://www.bootdey.com/image/100x100/87CEFA/000000" alt="image description"></a></li>
+                                <li><a href="javascript:void(0);"><img src="https://www.bootdey.com/image/100x100/87CEFA/000000" alt="image description"></a></li>
+                                <li><a href="javascript:void(0);"><img src="https://www.bootdey.com/image/100x100/87CEFA/000000" alt="image description"></a></li>
+                                <li><a href="javascript:void(0);"><img src="https://www.bootdey.com/image/100x100/87CEFA/000000" alt="image description"></a></li>
+                                <li><a href="javascript:void(0);"><img src="https://www.bootdey.com/image/100x100/87CEFA/000000" alt="image description"></a></li>
+                                <li><a href="javascript:void(0);"><img src="https://www.bootdey.com/image/100x100/87CEFA/000000" alt="image description"></a></li>
+                                <li><a href="javascript:void(0);"><img src="https://www.bootdey.com/image/100x100/87CEFA/000000" alt="image description"></a></li>
+                            </ul>
+                        </div>
+                    </div> {% endcomment %}
+                    <div class="card" style="background-color:#fbe5d4">
+                        <div class="header">
+                            <h2>Email Newsletter <small>Get our products/news earlier than others, let’s get in touch.</small></h2>
+                        </div>
+                        <div class="body widget newsletter">                        
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Enter Email">
+                                <div class="input-group-append">
+                                    <button type="submit" class="input-group-text btn-success" ><i class="icon-paper-plane"></i>submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock body %}

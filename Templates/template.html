@@ -71,7 +71,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <!-- Include SweetAlert2 CSS and JS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10" />
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 <!-- Include Leaflet CSS and JS -->
@@ -262,7 +261,7 @@ header -->
 <!--=================================
 footer -->
 
-<footer class="footer footer-4 parallax bg-overlay-black-70 page-section-pt" style="background-image: url(../statics/images/bg/06.jpg);">
+<footer class="footer footer-4 footer-custom parallax bg-overlay-black-70 page-section-pt" style="background-image: url(../statics/images/bg/06.jpg);">
     <div class="container">
       <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-6">
@@ -394,7 +393,7 @@ footer -->
 <script type="text/javascript" src="{% static 'js/isotope/isotope.pkgd.min.js' %}"></script>
 
 <!-- videoBG -->
-<script type="text/javascript" src="{% static 'js/video/jquery.vide.js' %}"></script>
+{% comment %} <script type="text/javascript" src="{% static 'js/video/jquery.vide.js' %}"></script> {% endcomment %}
 
 <!-- REVOLUTION JS FILES -->
 <script type="text/javascript" src="{% static 'revolution/js/jquery.themepunch.tools.min.js' %}"></script>
@@ -410,7 +409,7 @@ The following part can be removed on the Server for On-Demand Loading) -->
 <script type="text/javascript" src="{% static 'revolution/js/extensions/revolution.extension.navigation.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'revolution/js/extensions/revolution.extension.parallax.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'revolution/js/extensions/revolution.extension.slideanims.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'revolution/js/extensions/revolution.extension.video.min.js' %}"></script>
+{% comment %} <script type="text/javascript" src="{% static 'revolution/js/extensions/revolution.extension.video.min.js' %}"></script> {% endcomment %}
 <!-- SLIDER REVOLUTION CUSTOM -->
 <script type="text/javascript" src="{% static 'revolution/js/revolution-custom.js' %}"></script>
 

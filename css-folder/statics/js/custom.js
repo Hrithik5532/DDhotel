@@ -249,18 +249,6 @@ NOTE:
 /*************************
       datetimepicker
 *************************/
-  POTENZA.caldatapicker = function () {
-      var $datepicker = $("#datepicker"),
-          $timepicker = $("#timepicker");
-        if ($datepicker.exists()) {
-         $('#datepicker').datetimepicker({
-            pickTime: false
-          });
-          $('#timepicker').datetimepicker({
-            pickDate: false
-          });
-        }
-       };
 
 /*************************
       Burgermenu
@@ -366,26 +354,7 @@ NOTE:
 /*************************
      PHP contact form
 *************************/
-  POTENZA.contactform = function () {
-      var $contactform = $("#contactform");
 
-          $contactform.submit(function( event ) {
-            $("#ajaxloader").show();
-            $contactform.hide();
-            $.ajax({
-              url:'php/contact-form.php',
-              data:$(this).serialize(),
-              type:'post',
-              success:function(response){
-                $("#ajaxloader").hide();
-                $contactform.show();
-                $contactform.find("input, textarea").val("");
-                $("#formmessage").html(response).show().delay(2000).fadeOut('slow');
-              }
-            });
-            event.preventDefault();
-          });
-   }
 
 //Window load functions
   window.onload = function () {
@@ -393,7 +362,6 @@ NOTE:
         POTENZA.preloader(),
         POTENZA.Isotope(),
         POTENZA.masonry(),
-        POTENZA.caldatapicker(),
         POTENZA.progressBar();
     }
 
@@ -407,34 +375,9 @@ NOTE:
         POTENZA.burgermenu(),
         POTENZA.accordion(),
         POTENZA.countdownTimer(),
-        POTENZA.contactform(),
         POTENZA.niceScroll();
      });
 })(jQuery);
 
 // Below code is not part of template
-$( document ).ready(function() {
-  $.ajax({
-    url: 'https://themes.potenzaglobalsolutions.com/top-bar-section.php',
-    type: 'post',
-    //dataType: 'json',
-    data:'action=pgs_top_bar&theme=the-zayka',
-    success: function(response){
-      $('body').prepend(response);
-    },
 
-  });
-});
-$(document).on('click','a.frame-close', function(e){
-  $('.header-preview').slideUp();
-});
-
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/5efaefc99e5f694422918fd2/default';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
