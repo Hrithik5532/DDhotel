@@ -1,5 +1,5 @@
 {% extends "template.html" %}
-
+{% load social_share %}
 {% block body %}
 <style>
 .card {
@@ -210,6 +210,10 @@
     }
    
 }
+
+    .footer-4{
+        background:black !important;
+    }
 </style>
 
 <div id="main-content" class="blog-page">
@@ -233,6 +237,8 @@
                                     {% endfor %}
                                 </div>
                             </div>
+                  
+
                         </div>                        
                     </div>
                     {% comment %} <div class="card">

@@ -10,5 +10,5 @@ urlpatterns = [
 
 
     
-    path('order-sucess',views.order_success,name="order-success"),
+    path('payment/execute/',views.payment_execute,name="order-success"),
 ]

@@ -1,8 +1,13 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,HttpResponse
 from .models import Product,SubCategory
 from authentication.models import Cart,OrderItem,Order,Address
 from django.db.models import Q
-
+import paypalrestsdk
+paypalrestsdk.configure({
+    "mode": "sandbox",  # or "live"
+    "client_id": "AU06i-awSP9OtaccbCDE5UnrdwxL96jaNb6j028aBTxJnb6ru04LenBa8v6PtlMUdwpJVL8G8A63tfrR",
+    "client_secret": "EFwTOw9nttwuQHoLGn8cV1sY-X_y37IaxuUi8j8j7TO3veVlzXG_tbvEF53M2YL2T3o5CYfdF2oNl_Kg"
+})
 # Create your views here.
 def menu(request):
 
@@ -72,22 +77,80 @@ def order_create(request):
             price = i.product.price,
 
         )
-        sub_total = float(sub_total) + float(i.total_price)
+        sub_total = round(float(sub_total) + float(i.total_price),2)
         order.order_items.add(order_item)
         order.sub_total = sub_total
         order.save()
 
     order.deliveryCharges = float(request.session['distance_km'])*10
-    order.total = float(order.sub_total) + (float(request.session['distance_km'])*10)
+    order.total = round(float(order.sub_total) + (float(request.session['distance_km'])*10),2)
     order.save()
+    payment = paypalrestsdk.Payment({
+        "intent": "sale",
+        "payer": {
+            "payment_method": "paypal"
+        },
+        "redirect_urls": {
+            "return_url": "http://103.172.92.174/order-menu/payment/execute/",
+            "cancel_url": "http://103.172.92.174/order-menu/payment/cancel/"
+        },
+        "transactions": [{
+            "amount": {
+                "total": order.total,
+                "currency": "USD"
+            },
+            "description": "Payment description"
+        }]
+    })
+    
 
-    cart_items = Cart.objects.filter(user=request.user)
-    for i in cart_items:
-        i.delete()
+    if payment.create():
+        request.session['paypal_payment_id'] = payment.id
+        order.payment_id = payment.id
+        order.save()
+        for link in payment.links:
+            if link.method == "REDIRECT":
+                redirect_url = str(link.href)
+                return redirect(redirect_url)
 
-    return redirect('order-success')
+
+    else:
+        # messages.error(request,"Payment Canceled")
+        return render(request, 'payment_error.html')
+
+def payment_execute(request):
+
+    payment_id = request.session.get('paypal_payment_id')
+    if payment_id is None:
+        return redirect('home')
+    
+    payment = paypalrestsdk.Payment.find(payment_id)
+    if payment:
+        # Payment successful
+        order = Order.objects.get(payment_id=payment_id)
+       
+      
+
+        order.payment_amount = order.total
+        order.payment_status = "Completed"
+        order.save()
+
+        Cart.objects.filter(user=request.user).delete()
+
+        cntx={
+                    'payment':payment,
+                    'order':order
+        }
+        # You can perform any additional actions here, such as updating your database
+        # messages.success(request,'Order Placed! You can check on order Track')
+        return render(request,'order-success.html',cntx)
+    else:
+        # Payment failed
+        order = Order.objects.filter(payment_id=payment_id)[0]
+        
+       
+        order.payment_status = "Failed"
+        order.save()
 
 
-def order_success(request):
-
-    return render(request,'order-success.html')
+        return render(request, 'payment_error.html')

@@ -2,12 +2,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from themes.potenzaglobalsolutions.com/html/the-zayka/index-4.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Nov 2023 16:39:00 GMT -->
+<!-- Mirrored from themes.potenzaglobalsolutions.com/html/the-BomabyToGoa/index-4.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Nov 2023 16:39:00 GMT -->
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="keywords" content="HTML5 Template" />
-<meta name="description" content="The Zayka - Multipurpose Restaurant, Food & Cafe HTML5 Template" />
+<meta name="description" content="The BomabyToGoa - Multipurpose Restaurant, Food & Cafe HTML5 Template" />
 <meta name="author" content="potenzaglobalsolutions.com" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 <title> DDHotel - {{title}}</title>
@@ -118,6 +118,28 @@
       .links:hover{
         color:white;
       }
+      .share-icon-top{
+            font-size: 1.2rem !important;
+
+      }
+      @media (max-width: 600px) {
+        .footer-content-3, .footer-content-1, .footer-content-4{
+          display:none;
+        }
+    }
+    .custom-heading-font-wight{
+      font-weight : bold;
+    }
+    .share-icon-footer a{
+    font-size: 2rem;
+        padding: 1rem;
+    }
+    .share-icon-footer a i {
+    color:white;
+    }
+    .footer-icon:hover{
+    color:#e93e21 !important;
+    }
 </style>
 
 
@@ -143,49 +165,33 @@ loading -->
   <div class="topbar " style="padding-top:12px !important; padding-bottom:0px !important">
     <div class="container">
       <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="col-lg-6 col-md-6 col-sm-6">
           <div class="topbar-left text-start">
             <ul>
-              <li><i class="fa fa-phone"></i> +00 123 456 789 </li>
-              <li><a href="#"> <i class="fa fa-envelope-o"></i> example@yoursite.com</a></li>
+              <li><i class="fa fa-location"></i> 16 Headingley Lane, Headingley, Leeds, LS62AS</li>
+              <li><a href="mailto:info@bombay2goa.co.uk"> <i class="fa fa-envelope-o"></i> info@bombay2goa.co.uk</a></li>
             </ul>
           </div>
         </div>
-        <div class="col-lg-4 col-md-6 col-sm-6">
-          <div class="topbar-right text-end">
+        <div class="col-lg-6 col-md-6 col-sm-6 d-flex">
+            <div class="col-4">
             <ul>
-              <li><a href="#"><i class="fa fa-facebook"></i> </a></li>
-              <li><a href="#"><i class="fa fa-twitter"></i> </a></li>
-              <li><a href="#"><i class="fa fa-instagram"></i> </a></li>
-              <li><div class="search-1">
-                <a class="search-btn" href="javascript:void(0);"></a>
-                <!-- Overlay Search -->
-                <div class="overlay-search">
-                  <div class="container">
-                    <div class="row">
-                      <div class="form_search-wrap">
-                        <form>
-                          <input class="search-input" placeholder="Type and hit Enter..." type="text">
-                          <a href="#" class="search-close">
-                            <span></span>
-                            <span></span>
-                          </a>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- End Overlay Search -->
-                </div>
-              </li>
+              <li><a href="#" class="share-icon-top"><i class="fa-brands fa-instagram"></i> </a></li>
+              <li><a href="#" class="share-icon-top"><i class="fa-brands fa-twitter"></i></a></li>
+              <li><a href="#" class="share-icon-top"><i class="fa-brands fa-linkedin"></i></a></li>
+          
 
             </ul>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-6">
-            <div class="topbar-right text-end">
-                <a href="{% url 'reservation' %}" class="reservation">Make Reservation</a>
             </div>
+            <div class="col-4">
+                <a href="{% url 'reservation' %}" class="reservation text-end">Make Reservation</a>
+            </div>
+            <div class="col-4">
+                <a href="{% url 'review' %}" class="reservation text-end"> Reviews</a>
+                <span style="margin: 0px 5px;"> | </span>
+                <a href="{% url 'all_articles' %}" class="reservation text-end"> Articles</a>
+            </div>
+            
           </div>
       </div>
     </div>
@@ -203,8 +209,7 @@ loading -->
               <ul class="menu-logo">
                 <li class="head-info">
                   <a href="index.html"><img id="logo_dark_img" src="../statics/images/logo-dark.png" alt="logo"> </a>
-                  <div class="head-info-content">
-                  </div>
+                  
                 </li>
               </ul>
               <!-- menu links -->
@@ -264,17 +269,23 @@ footer -->
 <footer class="footer footer-4 footer-custom parallax bg-overlay-black-70 page-section-pt" style="background-image: url(../statics/images/bg/06.jpg);">
     <div class="container">
       <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-6">
-          <div class="logo-sec">
-            <img id="logo-footer" class="img-fluid footer-logo" src="{% static 'images/logo.png' %} " alt="">
-            <p class="text-white">The Zayka is an enchanting and easy to use Restaurant HTML template that allows you to tell your story in a dynamic way. </p>
-            <p class="text-white"> Template is packed with everything you need to create a new website. you to tell your story in a dynamic way </p>
-            <a class="text-orange" href="#">Read More</a></div>
-          </div>
           <div class="col-lg-3 col-md-3 col-sm-6">
-            <div class="opening-time">
-              <h4 class="text-white"><span class="text-orange">Open</span> time</h4>
-              <ul>
+            <div class="logo-sec footer-content-1">
+              <img id="logo-footer" class="img-flid footer-logo" src="{% static 'images/logo.png' %} " alt="">
+              <div class="d-flex share-icon-footer">
+              <a href="#" ><i class="fa-brands fa-instagram footer-icon"></i> </a>
+              <a href="#" ><i class="fa-brands fa-twitter footer-icon"></i></a>
+              <a href="#" ><i class="fa-brands fa-linkedin footer-icon"></i></a>
+              <a href="#" ><i class="fa-brands fa-whatsapp footer-icon"></i></a>
+          
+              </div>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-6 footer-content-2">
+            <div class="opening-time" >
+              <h4 class="text-white" style="text-align:center"><span class="text-orange">Open</span> time</h4>
+              <ul class="pl-0">
                 <li><strong>Mon-Friday</strong>  <span class="text-end">8am - 2pm </span></li>
                 <li><strong>Saturday</strong>  <span>10am - 4pm</span></li>
                 <li><strong>Sunday</strong>  <span >11am - 4pm</span></li>
@@ -282,10 +293,10 @@ footer -->
               </ul>
             </div>
           </div>
-          <div class="col-lg-2 col-md-3 col-sm-6">
+          <div class="col-lg-2 col-md-3 col-sm-6 footer-content-3">
             <div class="opening-time">
-              <h4 class="text-white"><span class="text-orange">Userful</span> Links</h4>
-              <ul>
+              <h4 class="text-white pl-2" ><span class="text-orange">Userful</span> Links</h4>
+              <ul class="pl-0">
                 <li><i class="fa fa-dot-circle-o"></i><a class="text-orange links" style="margin-left:3px" href="{% url 'home' %}">Articles</a>  </li>
                 <li><i class="fa fa-dot-circle-o"></i><a class="text-orange links" style="margin-left:3px" href="{% url 'review' %}">Reviews</a>  </li>
                 <li><i class="fa fa-dot-circle-o"></i><a class="text-orange links" style="margin-left:3px" href="{% url 'menu' %}">Menu</a>  </li>
@@ -293,9 +304,9 @@ footer -->
             </div>
           </div>
           
-          <div class="col-lg-4 col-md-3 col-sm-6">
+          <div class="col-lg-4 col-md-3 col-sm-6 footer-content-4">
             <div class="contact">
-              <h4 class="text-white"><span class="text-orange">CONTACT</span>  US</h4>
+              <h4 class="text-white" style="text-align:center"><span class="text-orange">CONTACT</span>  US</h4>
               <p class="text-white"><i class="fa fa-map-marker"></i>16 Headingley Lane, Headingley, Leeds, LS62AS</p>
               <p class="text-white"><i class="fa  fa-phone"></i>(01) 123 456 7890</p>
               <p><a href="#" class="text-white"> <i class="fa fa-envelope-o"></i>info@bombay2goa.co.uk</a></p>
@@ -304,9 +315,9 @@ footer -->
           </div>
       </div>
     </div>
-    <div class="footer">
+    <div class="footer d-flex justify-content-center" style="    text-align: center;">
         
-        <div class="copyright d-flex justify-content-center"> <p class="text-white"> &copy;Copyright <span id="copyright"> <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script></span> All right reserved. Designed by <a href="https://himanicc.com/" target="_blank"> www.Himanicc.com</a></p>
+        <div class="copyright d-flex justify-content-center"> <p class="text-white"> &copy;Copyright <span id="copyright"> <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script></span> All right reserved. Designed by <a href="https://himanicc.com/"class="text-orange" target="_blank"> www.Himanicc.com</a></p>
         </div>
         
     </div>
@@ -421,6 +432,6 @@ The following part can be removed on the Server for On-Demand Loading) -->
 
   </body>
   
-  <!-- Mirrored from themes.potenzaglobalsolutions.com/html/the-zayka/index-4.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Nov 2023 16:40:12 GMT -->
+  <!-- Mirrored from themes.potenzaglobalsolutions.com/html/the-BomabyToGoa/index-4.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 Nov 2023 16:40:12 GMT -->
   </html>
   

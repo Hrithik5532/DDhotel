@@ -9,7 +9,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 import random
 from functions import send_email_otp
-
+from Reservations_Reviews_Contact.models import Review
 def get_lat_long(address):
     geolocator = Nominatim(user_agent="user_agent")  # Replace with your app name
     location = geolocator.geocode(address)
@@ -33,7 +33,8 @@ print("!@#@@!@@@!!@#@@",store_location)
 
 
 def home(request):
-    return render(request,'index-4.html')
+    reviews = Review.objects.order_by('-id').all()[:11]
+    return render(request,'index-4.html',{'reviews':reviews})
 
 
 
@@ -174,11 +175,11 @@ def add_cart(request):
             if Cart.objects.filter(user=request.user,product=product).exists():
                 cart_item = Cart.objects.get(user=request.user,product=product)
                 cart_item.quantity =qty
-                cart_item.total_price = float(cart_item.quantity * float(product.price))
+                cart_item.total_price = round(cart_item.quantity * float(product.price),2)
                 cart_item.save()
             else:
                 cart_item = Cart.objects.create(user=request.user,product=product,quantity=int(qty),
-                                                total_price =float(qty * float(product.price)) )
+                                                total_price =round(qty * float(product.price),2) )
                 cart_item.save()
             print("!!!!!!!!",'added')
             return JsonResponse({'message': 'Added successfully'})
@@ -217,7 +218,6 @@ def my_cart(request):
     if not user_location:
         # If not, send a request to update_session with the default addressId
         default_address = Address.objects.filter(user=request.user, is_default=True).first()
-        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@",default_address)
         if default_address:
             update_session(request, addressId=default_address.id)
 
@@ -231,10 +231,10 @@ def my_cart(request):
     addresses = Address.objects.filter(user=request.user)
     try: 
         delivery_price = float((int(request.session['distance_km'])*10))
-        total_price = Subtotal_price + delivery_price
+        total_price = round(Subtotal_price + delivery_price)
     except:
         delivery_price =None
-        total_price = Subtotal_price
+        total_price = round(Subtotal_price)
         
     return render(request,'my-cart.html',{'cart_items':cart_items,'addresses':addresses,'total_price':total_price,'delivery_price':delivery_price,'Subtotal_price':Subtotal_price})
 

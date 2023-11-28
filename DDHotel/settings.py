@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'Articles',
     'ckeditor',
     'taggit',
-    'corsheaders'
+    'corsheaders',
+    'django_social_share'
 
 ]
 CORS_ALLOW_ALL_ORIGINS = True  # Allow all origins

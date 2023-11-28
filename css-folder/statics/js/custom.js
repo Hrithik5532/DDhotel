@@ -1,6 +1,6 @@
 /*
 
-Template: The Zayka - Multipurpose Restaurant, Food & Cafe HTML5 Template
+Template: The BomabyToGoa - Multipurpose Restaurant, Food & Cafe HTML5 Template
 Author: potenzaglobalsolutions.com
 Version: 1.0
 Design and Developed by: potenzaglobalsolutions.com
